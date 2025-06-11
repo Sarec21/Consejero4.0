@@ -1,0 +1,59 @@
+[
+  {
+    "id": "mutation_royal_reform_success",
+    "title": "Winds of Reform",
+    "description": "The King announces a wave of reforms inspired by the Counselor's guidance.",
+    "effects": {
+      "prestige": 10,
+      "trust": 15,
+      "war": false
+    },
+    "requiredTags": ["reform", "balance"],
+    "forbiddenTags": ["war", "betrayal"],
+    "minTurns": 3,
+    "linkedEvents": ["reform_tax_system", "heal_faction_conflict"],
+    "unlockCards": ["card_reformist_push"],
+    "triggeredRumors": ["rumor_reform_wave"],
+    "visual": {
+      "tag_ia": "king in white robes addressing the court with open scrolls and sunlight"
+    }
+  },
+  {
+    "id": "mutation_blood_in_council",
+    "title": "Blood in the Council",
+    "description": "A noble is found murdered. Panic and suspicion spread across the court.",
+    "effects": {
+      "prestige": -15,
+      "trust": -10,
+      "war": false
+    },
+    "requiredTags": ["intrigue", "power"],
+    "forbiddenTags": ["peace", "stability"],
+    "minTurns": 4,
+    "linkedEvents": ["expose_traitor"],
+    "unlockCards": ["card_interrogate"],
+    "triggeredRumors": ["rumor_murder_in_court"],
+    "visual": {
+      "tag_ia": "bloodstained council table in a dark medieval room"
+    }
+  },
+  {
+    "id": "mutation_silent_rebellion",
+    "title": "The Silent Rebellion",
+    "description": "Peasants begin to withhold taxes in a quiet, coordinated resistance.",
+    "effects": {
+      "prestige": -5,
+      "trust": -5,
+      "war": false
+    },
+    "requiredTags": ["dissent", "economy"],
+    "forbiddenTags": ["prosperity"],
+    "minTurns": 5,
+    "linkedEvents": ["restructure_trade_routes"],
+    "unlockCards": ["card_peasant_decree"],
+    "triggeredRumors": ["rumor_tax_resistance"],
+    "visual": {
+      "tag_ia": "angry villagers holding back wheat and coins from royal collectors"
+    }
+  }
+]
