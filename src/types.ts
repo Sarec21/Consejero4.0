@@ -34,3 +34,25 @@ export interface Character {
   }
   visual?: string
 }
+
+export interface Event {
+  id: string
+  title: string
+  description: string
+  level:
+    | 'village'
+    | 'governor'
+    | 'royal_court'
+    | 'mythical_kingdom'
+    | 'legendary_oracle'
+  tags: string[]
+  recommended_for: string[]
+  conditions: {
+    min_trust?: number
+    max_trust?: number
+    min_prestige?: number
+    max_prestige?: number
+    war?: boolean
+    max_war?: boolean
+  }
+}

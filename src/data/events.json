@@ -1,0 +1,37 @@
+[
+  {
+    "id": "reform_tax_system",
+    "title": "Tax Reform",
+    "description": "The kingdom's tax code is outdated and favors the elite.",
+    "level": "royal_court",
+    "tags": ["economy", "justice"],
+    "recommended_for": ["plot_reconstruction_balance"],
+    "conditions": {
+      "min_trust": 50,
+      "max_war": false
+    }
+  },
+  {
+    "id": "heal_faction_conflict",
+    "title": "Faction Reconciliation",
+    "description": "Tensions rise between rival factions within the council.",
+    "level": "governor",
+    "tags": ["politics", "unity"],
+    "recommended_for": ["plot_reconstruction_balance", "plot_border_flames"],
+    "conditions": {
+      "min_prestige": 30
+    }
+  },
+  {
+    "id": "secure_silk_routes",
+    "title": "Silk Route Secured",
+    "description": "Trade routes to the East are threatened by bandits and corruption.",
+    "level": "governor",
+    "tags": ["trade", "diplomacy"],
+    "recommended_for": ["plot_trading_intrigue"],
+    "conditions": {
+      "max_trust": 80,
+      "war": false
+    }
+  }
+]
