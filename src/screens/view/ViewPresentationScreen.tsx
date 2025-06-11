@@ -1,3 +1,5 @@
+import { useGameState } from '../../state/gameState'
+
 interface ViewPresentationScreenProps {
   kingName: string
   kingdom: string
@@ -6,9 +8,14 @@ interface ViewPresentationScreenProps {
 }
 
 export default function ViewPresentationScreen({ kingName, kingdom, onContinue, debugText }: ViewPresentationScreenProps) {
+  const { currentKing } = useGameState()
+  const phrase = currentKing?.king_phrase || 'Long live the king.'
+  const throneDesc = currentKing?.throne_room_description || 'The throne room awaits.'
   return (
     <div>
       <h2>{kingName} of {kingdom}</h2>
+      <p>{phrase}</p>
+      <p>{throneDesc}</p>
       <p>You are now the advisor of King {kingName} of {kingdom}.</p>
       <button onClick={onContinue}>Continue</button>
       <details style={{ marginTop: '1rem' }}>
