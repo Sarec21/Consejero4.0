@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ritual_of_ashes",
+    "title": "The Ritual of Ashes",
+    "description": "In a hollowed-out chapel, nobles gather in silence. The scent of burnt paper and old incense lingers in the air.",
+    "tags": ["ritual", "mourning"],
+    "level": "royal_court",
+    "tone": "dark",
+    "visual": "chapel_candles_ashes",
+    "linked_plot_tags": ["legacy", "loss"],
+    "conditions": {
+      "prestige_below": 40,
+      "war": false
+    }
+  },
+  {
+    "id": "market_whispers",
+    "title": "Whispers in the Market",
+    "description": "A merchant pauses mid-sale to mutter about the royal bloodline. Ears perk, deals pause.",
+    "tags": ["rumor", "tension"],
+    "level": "village",
+    "tone": "neutral",
+    "visual": "marketplace_shadows_listeners",
+    "linked_plot_tags": ["intrigue", "deception"],
+    "conditions": {
+      "trust_below": 60
+    }
+  }
+]
