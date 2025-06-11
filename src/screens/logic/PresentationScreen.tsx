@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameState } from '../../state/gameState'
-import { generateInitialPlot } from '../../lib/narrative'
+import { generateInitialPlot, initialPlotPrompt } from '../../lib/narrative'
 import ViewPresentationScreen from '../view/ViewPresentationScreen'
 
 export default function PresentationScreen() {
@@ -13,11 +13,14 @@ export default function PresentationScreen() {
     setMainPlot,
   } = useGameState()
   const navigate = useNavigate()
+  const [debugText, setDebugText] = useState('')
 
   useEffect(() => {
     const init = async () => {
       try {
+        setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
         const plot = await generateInitialPlot()
+        setDebugText((prev) => prev + `Raw result:\n${JSON.stringify(plot, null, 2)}\n`)
         console.log('Generated plot:', plot)
         if (plot) {
           setMainPlot(plot)
@@ -27,11 +30,13 @@ export default function PresentationScreen() {
         } else {
           setKingName('Aldric')
           setKingdom('Eldoria')
+          setDebugText((prev) => prev + 'Fallback: plot was null\n')
         }
       } catch (error) {
         console.error('Error initializing plot', error)
         setKingName('Aldric')
         setKingdom('Eldoria')
+        setDebugText((prev) => prev + `Error: ${(error as Error).message}\n`)
       }
     }
     init()
@@ -46,6 +51,7 @@ export default function PresentationScreen() {
       kingName={kingName}
       kingdom={kingdom}
       onContinue={handleContinue}
+      debugText={debugText}
     />
   )
 }
