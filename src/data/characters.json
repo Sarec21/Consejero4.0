@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "id": "traitor_noble_02",
+    "name": "Lord Varell",
+    "archetype": "traitor",
+    "faction": "nobility",
+    "type": "hidden",
+    "appearance_conditions": {
+      "plot_tags": ["intrigue", "blood"],
+      "current_emotion": ["fear"],
+      "counselor_level": ["royal_court"]
+    },
+    "active_in_levels": ["royal_court", "mythical_kingdom"],
+    "tags": ["ambition", "coldness", "power"],
+    "visual": {
+      "ai_prompt": "dark nobleman with red cloak in medieval war chamber"
+    }
+  },
+  {
+    "id": "spy_guildmaster_01",
+    "name": "Master Elvan",
+    "archetype": "spy",
+    "faction": "merchant_guild",
+    "type": "hidden",
+    "appearance_conditions": {
+      "plot_tags": ["intrigue", "trade"],
+      "current_emotion": ["suspicion"],
+      "counselor_level": ["governor"]
+    },
+    "active_in_levels": ["governor", "royal_court"],
+    "tags": ["cunning", "secrecy", "influence"],
+    "visual": {
+      "ai_prompt": "hooded guildmaster with scrolls and coins in a shadowy market hall"
+    }
+  },
+  {
+    "id": "warrior_veteran_05",
+    "name": "Ser Kael",
+    "archetype": "veteran",
+    "faction": "military",
+    "type": "visible",
+    "appearance_conditions": {
+      "plot_tags": ["war", "honor"],
+      "current_emotion": ["anger", "courage"],
+      "counselor_level": ["village", "royal_court"]
+    },
+    "active_in_levels": ["village", "royal_court"],
+    "tags": ["bravery", "loyalty", "grief"],
+    "visual": {
+      "ai_prompt": "battle-scarred knight with worn armor standing in a foggy battlefield"
+    }
+  }
+]
