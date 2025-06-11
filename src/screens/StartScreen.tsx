@@ -8,7 +8,7 @@ export default function StartScreen() {
   const handleStart = () => {
     setKingName('Aldric the Just')
     setKingdom('Eldoria')
-    navigate('/presentation')
+    navigate('/level')
   }
 
   return (
