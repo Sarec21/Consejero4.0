@@ -2,61 +2,163 @@
   {
     "id": "plot_reconstruction_balance",
     "inspirationalPhrase": "Even peace demands sacrifice.",
-    "tone": "neutral",
+    "hiddenConflict": "Old nobles fear losing privileges as reforms restore order. Their sabotage threatens the realm's fragile recovery.",
+    "tone": ["neutral", "political", "hopeful"],
     "difficulty": "medium",
-    "level": "royal_court",
+    "recommendedLevels": ["royal_court"],
     "startingState": {
       "prestige": 40,
       "trust": 70,
       "war": false
     },
-    "requiredEvents": ["reform_tax_system", "heal_faction_conflict"],
-    "optionalTwists": ["internal_corruption", "popular_dissent"],
-    "revealTiming": {
-      "hint": 2,
-      "conflict": 5,
-      "climax": 8
+    "rumors": {
+      "low": "Officials grumble about tighter budgets.",
+      "medium": "Certain nobles meet in secret to discuss 'tradition'.",
+      "high": "Whispers of a hidden ledger point to embezzled funds."
     },
-    "tags": ["law", "balance", "recovery"]
+    "phases": [
+      {
+        "title": "Reform Proposal",
+        "description": "The court debates sweeping taxes and new justice codes.",
+        "requiredEvents": ["reform_tax_system"],
+        "advanceConditions": { "minTurns": 2 },
+        "forceAdvanceAfter": 4
+      },
+      {
+        "title": "Faction Discord",
+        "description": "Old wounds reopen as rival houses resist change.",
+        "requiredEvents": ["heal_faction_conflict"],
+        "advanceConditions": { "trustBelow": 60 },
+        "forceAdvanceAfter": 4
+      },
+      {
+        "title": "Balancing Act",
+        "description": "Choose between strict enforcement or appeasing dissenters.",
+        "requiredEvents": [],
+        "advanceConditions": { "keyDecision": "enforce_reforms" },
+        "forceAdvanceAfter": 3
+      },
+      {
+        "title": "Restoration or Ruin",
+        "description": "The success or failure of reforms shapes the kingdom's future.",
+        "requiredEvents": [],
+        "advanceConditions": { "minTurns": 1 },
+        "forceAdvanceAfter": 2
+      }
+    ],
+    "metadata": {
+      "compatibleKingdoms": ["justicar_realm", "rebirth_province"],
+      "relatedCharacters": ["royal_taxmaster", "restless_noble"],
+      "visualStyle": "austere silver",
+      "symbolIcon": "⚖️"
+    }
   },
   {
     "id": "plot_trading_intrigue",
     "inspirationalPhrase": "In the shadows of commerce, power grows.",
-    "tone": "dark",
+    "hiddenConflict": "A shadow market undermines official trade as rival guilds vie for dominance.",
+    "tone": ["dark", "scheming", "greedy"],
     "difficulty": "hard",
-    "level": "governor",
+    "recommendedLevels": ["governor"],
     "startingState": {
       "prestige": 55,
       "trust": 50,
       "war": false
     },
-    "requiredEvents": ["secure_silk_routes", "expose_traitor"],
-    "optionalTwists": ["smuggler_scandal", "diplomatic_blackmail"],
-    "revealTiming": {
-      "hint": 1,
-      "conflict": 4,
-      "climax": 7
+    "rumors": {
+      "low": "Merchants whisper about missing caravans.",
+      "medium": "A noble's seal appears on contraband shipments.",
+      "high": "A guild master pays spies with foreign coins."
     },
-    "tags": ["trade", "alliances", "intrigue"]
+    "phases": [
+      {
+        "title": "Whispers of Profit",
+        "description": "Caravans gather but tensions simmer among merchants.",
+        "requiredEvents": ["secure_silk_routes"],
+        "advanceConditions": { "minTurns": 2 },
+        "forceAdvanceAfter": 4
+      },
+      {
+        "title": "Secrets Exposed",
+        "description": "Smugglers are unmasked, revealing deeper schemes.",
+        "requiredEvents": ["expose_traitor"],
+        "advanceConditions": { "trustBelow": 55 },
+        "forceAdvanceAfter": 4
+      },
+      {
+        "title": "Deals in the Dark",
+        "description": "Choose loyalty or greed as alliances shift.",
+        "requiredEvents": [],
+        "advanceConditions": { "keyDecision": "control_trade" },
+        "forceAdvanceAfter": 3
+      },
+      {
+        "title": "New Trade Order",
+        "description": "Commerce flourishes or falters based on your choices.",
+        "requiredEvents": [],
+        "advanceConditions": { "minTurns": 1 },
+        "forceAdvanceAfter": 2
+      }
+    ],
+    "metadata": {
+      "compatibleKingdoms": ["coastal_league", "shadow_emporium"],
+      "relatedCharacters": ["cunning_merchant", "blackmail_agent"],
+      "visualStyle": "shadowed gold",
+      "symbolIcon": "💰"
+    }
   },
   {
     "id": "plot_border_flames",
     "inspirationalPhrase": "Some borders are drawn in blood.",
-    "tone": "dark",
+    "hiddenConflict": "Border tribes claim ancestral rights and prepare for uprising. The king's authority is at risk.",
+    "tone": ["dark", "military", "urgent"],
     "difficulty": "medium",
-    "level": "village",
+    "recommendedLevels": ["village"],
     "startingState": {
       "prestige": 30,
       "trust": 45,
       "war": true
     },
-    "requiredEvents": ["repel_invasion", "fortify_villages"],
-    "optionalTwists": ["betrayal_within", "mercenary_uprising"],
-    "revealTiming": {
-      "hint": 1,
-      "conflict": 3,
-      "climax": 6
+    "rumors": {
+      "low": "Armed riders were seen near the eastern path.",
+      "medium": "The blacksmiths work late and whisper of coming war.",
+      "high": "A commander was seen exchanging letters with unknown envoys."
     },
-    "tags": ["war", "honor", "tension"]
+    "phases": [
+      {
+        "title": "Tensions Rise",
+        "description": "Border raids increase. Farmers report strange banners.",
+        "requiredEvents": ["repel_invasion"],
+        "advanceConditions": { "minTurns": 2 },
+        "forceAdvanceAfter": 4
+      },
+      {
+        "title": "Call to Arms",
+        "description": "A garrison defects. The threat becomes undeniable.",
+        "requiredEvents": ["fortify_villages"],
+        "advanceConditions": { "trustBelow": 40 },
+        "forceAdvanceAfter": 4
+      },
+      {
+        "title": "Crisis Decision",
+        "description": "To defend, negotiate, or retreat — each choice has a cost.",
+        "requiredEvents": [],
+        "advanceConditions": { "keyDecision": "defend_border" },
+        "forceAdvanceAfter": 3
+      },
+      {
+        "title": "Aftermath",
+        "description": "Victory or loss echoes in every household.",
+        "requiredEvents": [],
+        "advanceConditions": { "minTurns": 1 },
+        "forceAdvanceAfter": 2
+      }
+    ],
+    "metadata": {
+      "compatibleKingdoms": ["iron_frontier", "storm_border"],
+      "relatedCharacters": ["traitor_general", "prophetic_child"],
+      "visualStyle": "gritty bronze",
+      "symbolIcon": "🛡️"
+    }
   }
 ]
