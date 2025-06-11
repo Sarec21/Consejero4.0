@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameState } from '../../state/gameState'
 import { checkAndTriggerMutations } from '../../lib/mutationLogic'
-import { generateTurnContent } from '../../lib/narrative'
+import { getAvailableEvents } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
 
 export default function TurnScreen() {
@@ -11,7 +11,7 @@ export default function TurnScreen() {
     mainPlot,
     currentTurn,
     setCurrentTurn,
-    setCurrentEvent,
+    setActiveEvents,
   } = useGameState()
   const [advice, setAdvice] = useState('')
   const navigate = useNavigate()
@@ -21,8 +21,8 @@ export default function TurnScreen() {
     const newTurn = currentTurn + 1
     setCurrentTurn(newTurn)
     if (mainPlot) {
-      const { event } = generateTurnContent(mainPlot, useGameState.getState())
-      setCurrentEvent(event)
+      const newEvents = getAvailableEvents(mainPlot, newTurn)
+      setActiveEvents(newEvents)
     }
     checkAndTriggerMutations(newTurn, mainPlot, useGameState.getState())
     navigate('/reaction')

@@ -1,8 +1,11 @@
+import type { Event } from '../../lib/eventSelector'
+import EventCard from '../../components/EventCard'
+
 interface ViewReactionScreenProps {
   kingName: string
   playerAdvice: string
   kingReaction: string
-  activeEvent?: { title: string; description: string } | null
+  activeEvent?: Event
   onEnd: () => void
 }
 
@@ -11,12 +14,7 @@ export default function ViewReactionScreen({ kingName, playerAdvice, kingReactio
     <div>
       <p>Your advice to King {kingName}: {playerAdvice}</p>
       <p>{kingReaction}</p>
-      {activeEvent && (
-        <div>
-          <h4>{activeEvent.title}</h4>
-          <p>{activeEvent.description}</p>
-        </div>
-      )}
+      {activeEvent && <EventCard event={activeEvent} />}
       <button onClick={onEnd}>End Game</button>
     </div>
   )

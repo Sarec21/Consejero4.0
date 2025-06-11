@@ -1,37 +1,38 @@
 [
   {
-    "id": "reform_tax_system",
-    "title": "Tax Reform",
-    "description": "The kingdom's tax code is outdated and favors the elite.",
+    "id": "event_reform_tax_system",
+    "title": "Tax Reform Proposal",
+    "description": "The court proposes a complete overhaul of the tax collection system to reduce corruption.",
     "level": "royal_court",
-    "tags": ["economy", "justice"],
-    "recommended_for": ["plot_reconstruction_balance"],
-    "conditions": {
-      "min_trust": 50,
-      "max_war": false
-    }
+    "tags": ["law", "reform", "corruption"],
+    "impact": {
+      "prestige": 5,
+      "trust": 10,
+      "war": 0
+    },
+    "activation_conditions": {
+      "plot_tags": ["law", "balance"],
+      "min_turn": 2,
+      "max_turn": 6
+    },
+    "visual": "scrolls_on_table_with_coins"
   },
   {
-    "id": "heal_faction_conflict",
-    "title": "Faction Reconciliation",
-    "description": "Tensions rise between rival factions within the council.",
+    "id": "event_secure_silk_routes",
+    "title": "Silk Route Protection",
+    "description": "Merchants request military escorts to defend against frequent raids.",
     "level": "governor",
-    "tags": ["politics", "unity"],
-    "recommended_for": ["plot_reconstruction_balance", "plot_border_flames"],
-    "conditions": {
-      "min_prestige": 30
-    }
-  },
-  {
-    "id": "secure_silk_routes",
-    "title": "Silk Route Secured",
-    "description": "Trade routes to the East are threatened by bandits and corruption.",
-    "level": "governor",
-    "tags": ["trade", "diplomacy"],
-    "recommended_for": ["plot_trading_intrigue"],
-    "conditions": {
-      "max_trust": 80,
-      "war": false
-    }
+    "tags": ["trade", "security"],
+    "impact": {
+      "prestige": 8,
+      "trust": -3,
+      "war": 5
+    },
+    "activation_conditions": {
+      "plot_tags": ["trade", "alliances"],
+      "min_turn": 1,
+      "max_turn": 5
+    },
+    "visual": "caravan_guarded_by_soldiers"
   }
 ]

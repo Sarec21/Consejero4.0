@@ -4,7 +4,7 @@ import { useGameState } from '../../state/gameState'
 import ViewReactionScreen from '../view/ViewReactionScreen'
 
 export default function ReactionScreen() {
-  const { kingName, playerAdvice, kingReaction, currentEvent, setKingReaction } = useGameState()
+  const { kingName, playerAdvice, kingReaction, activeEvents, setKingReaction } = useGameState()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function ReactionScreen() {
       kingName={kingName}
       playerAdvice={playerAdvice}
       kingReaction={kingReaction}
-      activeEvent={currentEvent ?? undefined}
+      activeEvent={activeEvents[0]}
       onEnd={handleEnd}
     />
   )
