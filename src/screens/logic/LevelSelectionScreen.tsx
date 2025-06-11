@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { useGameState } from '../state/gameState'
+import { useGameState } from '../../state/gameState'
+import ViewLevelSelectionScreen from '../view/ViewLevelSelectionScreen'
 
 const levels = [
   'Aldea',
@@ -19,15 +20,6 @@ export default function LevelSelectionScreen() {
   }
 
   return (
-    <div>
-      <h2>Select your level of influence</h2>
-      <ul>
-        {levels.map((level) => (
-          <li key={level}>
-            <button onClick={() => handleSelect(level)}>{level}</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ViewLevelSelectionScreen levels={levels} onSelect={handleSelect} />
   )
 }

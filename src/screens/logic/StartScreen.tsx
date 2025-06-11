@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { useGameState } from '../state/gameState'
+import { useGameState } from '../../state/gameState'
+import ViewStartScreen from '../view/ViewStartScreen'
 
 export default function StartScreen() {
   const navigate = useNavigate()
@@ -11,10 +12,5 @@ export default function StartScreen() {
     navigate('/level')
   }
 
-  return (
-    <div>
-      <h1>The Advisor</h1>
-      <button onClick={handleStart}>Start Game</button>
-    </div>
-  )
+  return <ViewStartScreen onStart={handleStart} />
 }
