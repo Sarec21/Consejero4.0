@@ -9,15 +9,17 @@ export interface GameState {
   setKingdom: (kingdom: string) => void
   setPlayerAdvice: (advice: string) => void
   setKingReaction: (reaction: string) => void
+  resetState: () => void
 }
 
 export const useGameState = create<GameState>((set) => ({
-  kingName: 'Aldric the Just',
-  kingdom: 'Eldoria',
+  kingName: '',
+  kingdom: '',
   playerAdvice: '',
-  kingReaction: 'The King nods solemnly, but his gaze is stern.',
+  kingReaction: '',
   setKingName: (kingName) => set({ kingName }),
   setKingdom: (kingdom) => set({ kingdom }),
   setPlayerAdvice: (playerAdvice) => set({ playerAdvice }),
   setKingReaction: (kingReaction) => set({ kingReaction }),
+  resetState: () => set({ kingName: '', kingdom: '', playerAdvice: '', kingReaction: '' }),
 }))

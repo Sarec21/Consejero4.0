@@ -3,14 +3,10 @@ import { useGameState } from '../state/gameState'
 
 export default function FinalScreen() {
   const navigate = useNavigate()
-  const { setKingName, setKingdom, setPlayerAdvice, setKingReaction } =
-    useGameState()
+  const { resetState } = useGameState()
 
   const handleReset = () => {
-    setKingName('')
-    setKingdom('')
-    setPlayerAdvice('')
-    setKingReaction('')
+    resetState()
     navigate('/')
   }
 
