@@ -1,0 +1,62 @@
+[
+  {
+    "id": "plot_reconstruction_balance",
+    "inspirationalPhrase": "Even peace demands sacrifice.",
+    "tone": "neutral",
+    "difficulty": "medium",
+    "level": "royal_court",
+    "startingState": {
+      "prestige": 40,
+      "trust": 70,
+      "war": false
+    },
+    "requiredEvents": ["reform_tax_system", "heal_faction_conflict"],
+    "optionalTwists": ["internal_corruption", "popular_dissent"],
+    "revealTiming": {
+      "hint": 2,
+      "conflict": 5,
+      "climax": 8
+    },
+    "tags": ["law", "balance", "recovery"]
+  },
+  {
+    "id": "plot_trading_intrigue",
+    "inspirationalPhrase": "In the shadows of commerce, power grows.",
+    "tone": "dark",
+    "difficulty": "hard",
+    "level": "governor",
+    "startingState": {
+      "prestige": 55,
+      "trust": 50,
+      "war": false
+    },
+    "requiredEvents": ["secure_silk_routes", "expose_traitor"],
+    "optionalTwists": ["smuggler_scandal", "diplomatic_blackmail"],
+    "revealTiming": {
+      "hint": 1,
+      "conflict": 4,
+      "climax": 7
+    },
+    "tags": ["trade", "alliances", "intrigue"]
+  },
+  {
+    "id": "plot_border_flames",
+    "inspirationalPhrase": "Some borders are drawn in blood.",
+    "tone": "dark",
+    "difficulty": "medium",
+    "level": "village",
+    "startingState": {
+      "prestige": 30,
+      "trust": 45,
+      "war": true
+    },
+    "requiredEvents": ["repel_invasion", "fortify_villages"],
+    "optionalTwists": ["betrayal_within", "mercenary_uprising"],
+    "revealTiming": {
+      "hint": 1,
+      "conflict": 3,
+      "climax": 6
+    },
+    "tags": ["war", "honor", "tension"]
+  }
+]
