@@ -1,7 +1,8 @@
 import { callAssistant } from './openai'
-import { useGameState } from '../state/gameState'
 
-export async function generateInitialPlot(): Promise<void> {
+import type { Plot } from '../state/gameState'
+
+export async function generateInitialPlot(): Promise<Plot | null> {
   const prompt = `Generate a JSON object representing a narrative plot for a medieval advisor game.
 The plot must follow this strict structure:
 {
@@ -23,9 +24,10 @@ Do not explain or wrap the output. Return only valid JSON.`
       prompt,
     )
     if (!result) throw new Error('No response from OpenAI')
-    const plot = JSON.parse(result)
-    useGameState.getState().setMainPlot(plot)
+    const plot: Plot = JSON.parse(result)
+    return plot
   } catch (error) {
     console.error('Failed to generate initial plot', error)
+    return null
   }
 }
