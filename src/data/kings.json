@@ -35,4 +35,41 @@
     "tags": ["war", "honor", "tension"],
     "visual": "king_throne_red03"
   }
+,
+  {
+    "id": "king_feron_just",
+    "name": "Feron",
+    "epithet": "the Just",
+    "personality": "rational",
+    "king_phrase": "I trust you to be honest, even if I won't always agree with you.",
+    "general_tone": "solemn",
+    "kingdom_context": "The Kingdom has recently emerged from war and is still seeking stability.",
+    "throne_room_description": "A hall of white marble and tall pillars. Light streams through golden stained glass windows.",
+    "tags": ["honor", "reconstruction", "balance"],
+    "visual": "mature_king_white_cloak_golden_light"
+  },
+  {
+    "id": "king_almeric_peacemaker",
+    "name": "Almeric",
+    "epithet": "the Peacemaker",
+    "personality": "thoughtful",
+    "king_phrase": "There is no justice without peace, and no peace without sacrifice.",
+    "general_tone": "hopeful",
+    "kingdom_context": "After years of internal strife, the Kingdom is on the verge of a new era.",
+    "throne_room_description": "A circular room with tapestries of ancient treaties. Candles flicker beside scrolls and maps.",
+    "tags": ["reconstruction", "balance", "diplomacy"],
+    "visual": "wise_king_scrolls_peaceful_aura"
+  },
+  {
+    "id": "king_therald_quietvoice",
+    "name": "Therald",
+    "epithet": "of the Quiet Voice",
+    "personality": "calm",
+    "king_phrase": "Let the people speak first. Then, we decide.",
+    "general_tone": "reflective",
+    "kingdom_context": "Therald rules a kingdom tired of proclamations. His patience is his weapon.",
+    "throne_room_description": "A simple stone room, where silence holds weight. Few decorations, many listeners.",
+    "tags": ["balance", "reform", "stability"],
+    "visual": "silent_king_stone_room_dim_light"
+  }
 ]
