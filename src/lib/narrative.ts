@@ -2,8 +2,7 @@ import { callAssistant } from './openai'
 
 import type { Plot } from '../state/gameState'
 
-export async function generateInitialPlot(): Promise<Plot | null> {
-  const prompt = `Generate a JSON object representing a narrative plot for a medieval advisor game.
+export const initialPlotPrompt = `Generate a JSON object representing a narrative plot for a medieval advisor game.
 The plot must follow this strict structure:
 {
   id: string,
@@ -18,6 +17,9 @@ The plot must follow this strict structure:
   tags: string[]
 }
 Do not explain or wrap the output. Return only valid JSON.`
+
+export async function generateInitialPlot(): Promise<Plot | null> {
+  const prompt = initialPlotPrompt
   try {
     const result = await callAssistant(
       'asst_xBvJOGRlyLWAJlQeWWTLFw8q',
