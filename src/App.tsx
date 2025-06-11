@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import StartScreen from './screens/StartScreen'
+import LevelSelectionScreen from './screens/LevelSelectionScreen'
 import PresentationScreen from './screens/PresentationScreen'
 import TurnScreen from './screens/TurnScreen'
 import ReactionScreen from './screens/ReactionScreen'
@@ -11,6 +12,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<StartScreen />} />
+        <Route path="/level" element={<LevelSelectionScreen />} />
         <Route path="/presentation" element={<PresentationScreen />} />
         <Route path="/turn" element={<TurnScreen />} />
         <Route path="/reaction" element={<ReactionScreen />} />
