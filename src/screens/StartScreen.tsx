@@ -1,12 +1,20 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useGameState } from '../state/gameState'
 
 export default function StartScreen() {
+  const navigate = useNavigate()
+  const { setKingName, setKingdom } = useGameState()
+
+  const handleStart = () => {
+    setKingName('Aldric the Just')
+    setKingdom('Eldoria')
+    navigate('/presentation')
+  }
+
   return (
     <div>
       <h1>The Advisor</h1>
-      <Link to="/presentation">
-        <button>Start Game</button>
-      </Link>
+      <button onClick={handleStart}>Start Game</button>
     </div>
   )
 }

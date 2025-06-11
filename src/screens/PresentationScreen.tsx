@@ -5,8 +5,8 @@ export default function PresentationScreen() {
   const { kingName, kingdom } = useGameState()
   return (
     <div>
-      <h2>Welcome to {kingdom}</h2>
-      <p>King {kingName} awaits your counsel.</p>
+      <h2>{kingName} of {kingdom}</h2>
+      <p>You are now the advisor of King {kingName} of {kingdom}.</p>
       <Link to="/turn">
         <button>Continue</button>
       </Link>

@@ -12,9 +12,9 @@ export default function TurnScreen() {
 
   return (
     <div>
-      <p>Villagers have gathered in the square with torches.</p>
+      <p>The villagers have gathered in the square with torches.</p>
       <p>Should we intervene or let them speak freely?</p>
-      <input
+      <textarea
         value={advice}
         onChange={(e) => setAdvice(e.target.value)}
         placeholder="Your advice"
