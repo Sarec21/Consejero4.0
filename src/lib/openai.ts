@@ -4,6 +4,8 @@ export async function callAssistant(
   threadId?: string,
 ): Promise<string> {
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY
+  // Temporary log to verify env variable is loaded correctly
+  console.log('Loaded API key:', apiKey?.slice(0, 5))
   if (!apiKey) {
     throw new Error('OpenAI API key is missing')
   }
