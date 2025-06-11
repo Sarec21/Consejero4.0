@@ -21,6 +21,11 @@ export interface Plot {
     climax: number
   }
   tags: string[]
+  personajes_recomendados?: {
+    facciones?: string[]
+    arquetipos?: string[]
+    etiquetas?: string[]
+  }
 }
 
 export interface GameState {
