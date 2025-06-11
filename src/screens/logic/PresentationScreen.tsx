@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameState } from '../../state/gameState'
 import { generateInitialPlot, initialPlotPrompt } from '../../lib/narrative'
-import { getRandomKing } from '../../lib/kings'
+import { findMatchingKing } from '../../lib/kingSelector'
 import ViewPresentationScreen from '../view/ViewPresentationScreen'
 
 export default function PresentationScreen() {
@@ -20,18 +20,19 @@ export default function PresentationScreen() {
   useEffect(() => {
     const init = async () => {
       try {
-        const king = getRandomKing()
-        setCurrentKing(king)
-        setKingName(`${king.name} ${king.epithet}`)
-        if (king.tags && king.tags.length > 0) {
-          setKingdom(king.tags[0])
-        }
         setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
         const plot = await generateInitialPlot()
         setDebugText((prev) => prev + `Raw result:\n${JSON.stringify(plot, null, 2)}\n`)
         console.log('Generated plot:', plot)
         if (plot) {
           setMainPlot(plot)
+          const king = findMatchingKing(plot)
+          console.log('Selected king:', king)
+          if (king) {
+            setCurrentKing(king)
+            setKingName(`${king.name} ${king.epithet}`)
+          }
+          setKingdom(plot.tags[0] || 'Eldoria')
         } else {
           setDebugText((prev) => prev + 'Fallback: plot was null\n')
         }
