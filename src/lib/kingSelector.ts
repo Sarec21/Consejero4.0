@@ -13,5 +13,5 @@ export function findMatchingKing(plot: Plot) {
     }
   }
 
-  return bestMatch
+  return maxMatches > 0 ? bestMatch : null
 }
