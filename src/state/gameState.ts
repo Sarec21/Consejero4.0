@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import type { King } from '../types'
+import type { Event as PlotEvent } from "../lib/eventSelector"
 
 export interface Plot {
   id: string
@@ -43,6 +44,7 @@ export interface GameState {
   activatedMutations: string[]
   unlockedCards: string[]
   rumorsQueue: string[]
+  activeEvents: PlotEvent[],
   currentEvent: import('../lib/eventUtils').Event | null
   setKingName: (name: string) => void
   setKingdom: (kingdom: string) => void
@@ -56,6 +58,7 @@ export interface GameState {
   setTrust: (value: number) => void
   setWar: (value: boolean) => void
   addActivatedMutation: (id: string) => void
+  setActiveEvents: (events: PlotEvent[]) => void,
   addUnlockedCards: (cards: string[]) => void
   addRumors: (rumors: string[]) => void
   setCurrentEvent: (event: import('../lib/eventUtils').Event | null) => void
@@ -79,6 +82,7 @@ export const useGameState = create<GameState>((set) => ({
   unlockedCards: [],
   rumorsQueue: [],
   currentEvent: null,
+  activeEvents: [],
   setKingName: (kingName) => set({ kingName }),
   setKingdom: (kingdom) => set({ kingdom }),
   setPlayerAdvice: (playerAdvice) => set({ playerAdvice }),
@@ -94,6 +98,7 @@ export const useGameState = create<GameState>((set) => ({
     set((state) => ({ activatedMutations: [...state.activatedMutations, id] })),
   addUnlockedCards: (cards) =>
     set((state) => ({ unlockedCards: [...state.unlockedCards, ...cards] })),
+  setActiveEvents: (activeEvents) => set({ activeEvents }),
   addRumors: (rumors) =>
     set((state) => ({ rumorsQueue: [...state.rumorsQueue, ...rumors] })),
   setCurrentEvent: (currentEvent) => set({ currentEvent }),
@@ -112,6 +117,7 @@ export const useGameState = create<GameState>((set) => ({
       war: false,
       activatedMutations: [],
       unlockedCards: [],
+      activeEvents: [],
       rumorsQueue: [],
       currentEvent: null,
     }),

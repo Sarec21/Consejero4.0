@@ -1,5 +1,5 @@
 import { callAssistant } from './openai'
-import { getEligibleEvents, type Event } from './eventUtils'
+
 import scenesData from '../data/reusable_scenes.json'
 import type { Plot, GameState } from '../state/gameState'
 
@@ -92,7 +92,6 @@ export async function generateInitialPlot(): Promise<Plot | null> {
 }
 
 export interface TurnContext {
-  event: Event | null
   sceneDescription: string
   sceneVisual: string | null
 }
@@ -101,17 +100,12 @@ export function generateTurnContent(
   plot: Plot,
   gameState: GameState,
 ): TurnContext {
-  const eligible = getEligibleEvents(plot, gameState)
-  const event = eligible.length > 0
-    ? eligible[Math.floor(Math.random() * eligible.length)]
-    : null
   const possibleScenes = getEligibleScenes(plot, gameState)
   const scene = possibleScenes.length > 0
     ? possibleScenes[Math.floor(Math.random() * possibleScenes.length)]
     : null
   const fallback = 'The court murmurs restlessly while shadows gather in the corners of the hall.'
   return {
-    event,
     sceneDescription: scene ? scene.description : fallback,
     sceneVisual: scene ? scene.visual : null,
   }

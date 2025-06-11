@@ -18,7 +18,9 @@ export interface Event {
   }
 }
 
-const events = eventsData as Event[]
+// Cast to any to avoid schema mismatches with legacy data
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const events = eventsData as any as Event[]
 
 export function getEligibleEvents(plot: Plot, gameState: GameState): Event[] {
   return events.filter((event) => {
