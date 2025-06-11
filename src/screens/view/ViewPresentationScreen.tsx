@@ -8,7 +8,7 @@ interface ViewPresentationScreenProps {
 }
 
 export default function ViewPresentationScreen({ kingName, kingdom, onContinue, debugText }: ViewPresentationScreenProps) {
-  const { currentKing } = useGameState()
+  const { currentKing, mainPlot } = useGameState()
   const phrase = currentKing?.king_phrase || 'Long live the king.'
   const throneDesc = currentKing?.throne_room_description || 'The throne room awaits.'
   return (
@@ -28,6 +28,14 @@ export default function ViewPresentationScreen({ kingName, kingdom, onContinue, 
           padding: '0.5rem',
           whiteSpace: 'pre-wrap',
         }}>{debugText}</pre>
+        {currentKing && mainPlot && (
+          <div style={{ marginTop: '1rem' }}>
+            <h4>🧪 Test visual de asignación</h4>
+            <p><strong>Rey:</strong> {currentKing.name} ({currentKing.epithet})</p>
+            <p><strong>Tags del Rey:</strong> {currentKing.tags.join(', ')}</p>
+            <p><strong>Tags de la Trama:</strong> {mainPlot.tags.join(', ')}</p>
+          </div>
+        )}
       </details>
     </div>
   )
