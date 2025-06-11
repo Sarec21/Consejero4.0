@@ -21,7 +21,7 @@ export function findMatchingCharacter(plot: Plot): Character | null {
   let best: Character | null = null
   let bestScore = -Infinity
 
-  for (const char of characters as Character[]) {
+  for (const char of characters as unknown as Character[]) {
     if (!char.activo_en_niveles.includes(plot.level)) continue
     if (char.oculto && !conditionsMet(plot, char.condiciones_aparicion)) continue
 
@@ -45,4 +45,36 @@ export function findMatchingCharacter(plot: Plot): Character | null {
   }
 
   return best
+}
+
+export function findCompatibleCharacters(
+  plot: Plot,
+  currentEmotion: string[],
+  level: string,
+): unknown[] {
+  interface FilterChar {
+    type?: string
+    appearance_conditions?: {
+      plot_tags?: string[]
+      current_emotion?: string[]
+      counselor_level?: string[]
+    }
+    [key: string]: unknown
+  }
+
+  return (characters as FilterChar[]).filter((char) => {
+    if (char.type !== 'visible' && char.type !== 'hidden') return false
+    const cond = char.appearance_conditions
+    if (!cond) return false
+    if (cond.plot_tags && !cond.plot_tags.some((tag) => plot.tags.includes(tag)))
+      return false
+    if (
+      cond.current_emotion &&
+      !cond.current_emotion.some((e) => currentEmotion.includes(e))
+    )
+      return false
+    if (cond.counselor_level && !cond.counselor_level.includes(level))
+      return false
+    return true
+  }) as unknown[]
 }
