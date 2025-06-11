@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import StartScreen from './screens/StartScreen'
-import LevelSelectionScreen from './screens/LevelSelectionScreen'
-import PresentationScreen from './screens/PresentationScreen'
-import TurnScreen from './screens/TurnScreen'
-import ReactionScreen from './screens/ReactionScreen'
-import FinalScreen from './screens/FinalScreen'
+import StartScreen from './screens/logic/StartScreen'
+import LevelSelectionScreen from './screens/logic/LevelSelectionScreen'
+import PresentationScreen from './screens/logic/PresentationScreen'
+import TurnScreen from './screens/logic/TurnScreen'
+import ReactionScreen from './screens/logic/ReactionScreen'
+import FinalScreen from './screens/logic/FinalScreen'
 import './App.css'
 
 export default function App() {
