@@ -1,0 +1,26 @@
+[
+  {
+    "id": "king_aldric_justo",
+    "name": "Aldric",
+    "epithet": "the Just",
+    "personality": "strict but fair",
+    "king_phrase": "Justice must never waver.",
+    "general_tone": "solemn and balanced",
+    "kingdom_context": "The kingdom is recovering from a long civil war and stability is fragile.",
+    "throne_room_description": "The royal hall is austere, flanked by cold stone columns and a high vaulted ceiling.",
+    "tags": ["law", "balance", "recovery"],
+    "visual": "king_throne_dark01"
+  },
+  {
+    "id": "king_lauren_cunning",
+    "name": "Lauren",
+    "epithet": "the Cunning",
+    "personality": "clever and manipulative",
+    "king_phrase": "Knowledge is power.",
+    "general_tone": "scheming and mischievous",
+    "kingdom_context": "The realm thrives on trade and hidden alliances.",
+    "throne_room_description": "Bright banners cover the walls, but whispers fill the court.",
+    "tags": ["trade", "alliances", "intrigue"],
+    "visual": "king_throne_light02"
+  }
+]
