@@ -43,6 +43,7 @@ export interface GameState {
   activatedMutations: string[]
   unlockedCards: string[]
   rumorsQueue: string[]
+  currentEvent: import('../lib/eventUtils').Event | null
   setKingName: (name: string) => void
   setKingdom: (kingdom: string) => void
   setPlayerAdvice: (advice: string) => void
@@ -57,6 +58,7 @@ export interface GameState {
   addActivatedMutation: (id: string) => void
   addUnlockedCards: (cards: string[]) => void
   addRumors: (rumors: string[]) => void
+  setCurrentEvent: (event: import('../lib/eventUtils').Event | null) => void
   resetMainPlot: () => void
   resetState: () => void
 }
@@ -76,6 +78,7 @@ export const useGameState = create<GameState>((set) => ({
   activatedMutations: [],
   unlockedCards: [],
   rumorsQueue: [],
+  currentEvent: null,
   setKingName: (kingName) => set({ kingName }),
   setKingdom: (kingdom) => set({ kingdom }),
   setPlayerAdvice: (playerAdvice) => set({ playerAdvice }),
@@ -93,6 +96,7 @@ export const useGameState = create<GameState>((set) => ({
     set((state) => ({ unlockedCards: [...state.unlockedCards, ...cards] })),
   addRumors: (rumors) =>
     set((state) => ({ rumorsQueue: [...state.rumorsQueue, ...rumors] })),
+  setCurrentEvent: (currentEvent) => set({ currentEvent }),
   resetMainPlot: () => set({ mainPlot: null }),
   resetState: () =>
     set({
@@ -109,5 +113,6 @@ export const useGameState = create<GameState>((set) => ({
       activatedMutations: [],
       unlockedCards: [],
       rumorsQueue: [],
+      currentEvent: null,
     }),
 }))

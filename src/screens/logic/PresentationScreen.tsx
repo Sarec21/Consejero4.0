@@ -25,8 +25,10 @@ export default function PresentationScreen() {
           const king = findMatchingKing(mainPlot)
           console.log('Using existing plot:', mainPlot)
           console.log('Selected king:', king)
-          setCurrentKing(king)
-          setKingName(`${king?.name} ${king?.epithet}`)
+          if (king) {
+            setCurrentKing(king)
+            setKingName(`${king.name} ${king.epithet}`)
+          }
           setKingdom(mainPlot.tags[0] || 'Eldoria')
         } else {
           setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
@@ -37,8 +39,10 @@ export default function PresentationScreen() {
             setMainPlot(plot)
             const king = findMatchingKing(plot)
             console.log('Selected king:', king)
-            setCurrentKing(king)
-            setKingName(`${king?.name} ${king?.epithet}`)
+            if (king) {
+              setCurrentKing(king)
+              setKingName(`${king.name} ${king.epithet}`)
+            }
             setKingdom(plot.tags[0] || 'Eldoria')
           } else {
             setDebugText((prev) => prev + 'Fallback: plot was null\n')

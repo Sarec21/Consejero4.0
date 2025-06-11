@@ -1,6 +1,7 @@
 import { callAssistant } from './openai'
+import { getEligibleEvents, type Event } from './eventUtils'
 
-import type { Plot } from '../state/gameState'
+import type { Plot, GameState } from '../state/gameState'
 
 export const initialPlotPrompt = `Generate a JSON object representing a narrative plot for a medieval advisor game.
 The plot must follow this strict structure:
@@ -32,4 +33,19 @@ export async function generateInitialPlot(): Promise<Plot | null> {
     console.error('Failed to generate initial plot', error)
     return null
   }
+}
+
+export interface TurnContext {
+  event: Event | null
+}
+
+export function generateTurnContent(
+  plot: Plot,
+  gameState: GameState,
+): TurnContext {
+  const eligible = getEligibleEvents(plot, gameState)
+  const event = eligible.length > 0
+    ? eligible[Math.floor(Math.random() * eligible.length)]
+    : null
+  return { event }
 }
