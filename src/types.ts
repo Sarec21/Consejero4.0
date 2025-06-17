@@ -56,3 +56,24 @@ export interface Event {
     max_war?: boolean
   }
 }
+
+export interface Kingdom {
+  id: string
+  name: string
+  motto: string
+  description: string
+  visual_style: {
+    palette: string
+    architecture: string
+    landmarks: string[]
+  }
+  narrative_tags: string[]
+  levels_available: string[]
+  default_weather?: string
+  season_cycle?: string[]
+  symbolic_elements?: string[]
+  visual_prompt_tag: string
+  recommended_plot_tags?: string[]
+  recommended_kings?: string[]
+}
+
