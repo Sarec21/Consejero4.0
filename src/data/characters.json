@@ -81,6 +81,92 @@
     "active_in_levels": ["village", "governor"],
     "tags": ["hope", "risk", "disruption"],
     "visual": {
+      "tag_ia": "female warrior with northern tattoos in snowy exile"
+    },
+    "active_in_levels": [
+      "mythical_kingdom"
+    ]
+  },
+  {
+    "id": "traitor_general",
+    "name": "General Draxx",
+    "archetype": "traitor",
+    "faction": "military",
+    "type": "hidden",
+    "appearance_conditions": {
+      "plot_tags": ["war", "betrayal"],
+      "current_emotion": ["anger"],
+      "advisor_level": ["village", "royal_court"]
+    },
+    "active_in_levels": ["village", "royal_court"],
+    "tags": ["violence", "strategy", "resentment"],
+    "visual": {
+      "tag_ia": "a grim military general with a red cape and dark eyes, in a candle-lit war room"
+    }
+  },
+  {
+    "id": "black_merchant",
+    "name": "Sira the Black",
+    "archetype": "merchant",
+    "faction": "guild",
+    "type": "visible",
+    "appearance_conditions": {
+      "plot_tags": ["trade"],
+      "advisor_level": ["governor"]
+    },
+    "active_in_levels": ["governor"],
+    "tags": ["profit", "mystery"],
+    "visual": {
+      "tag_ia": "a veiled merchant woman counting gold coins in a silk-covered booth"
+    }
+  },
+  {
+    "id": "ghost_child",
+    "name": "Whisper",
+    "archetype": "spirit",
+    "faction": "unknown",
+    "type": "hidden",
+    "appearance_conditions": {
+      "plot_tags": ["ritual"],
+      "advisor_level": ["mythical_kingdom"]
+    },
+    "active_in_levels": ["mythical_kingdom"],
+    "tags": ["haunting", "truth"],
+    "visual": {
+      "tag_ia": "a pale child ghost with glowing eyes in a moonlit forest"
+    }
+  },
+  {
+    "id": "high_judge",
+    "name": "Magister Kael",
+    "archetype": "judge",
+    "faction": "law",
+    "type": "visible",
+    "appearance_conditions": {
+      "plot_tags": ["law", "recovery"],
+      "advisor_level": ["royal_court"]
+    },
+    "active_in_levels": ["royal_court"],
+    "tags": ["order", "tradition"],
+    "visual": {
+      "tag_ia": "a bearded judge in ceremonial robes holding a silver staff"
+    }
+  },
+  {
+    "id": "rebel_poet",
+    "name": "Aelin of the Flame",
+    "archetype": "bard",
+    "faction": "populace",
+    "type": "visible",
+    "appearance_conditions": {
+      "plot_tags": ["dissent"],
+      "current_emotion": ["doubt"],
+      "advisor_level": ["village"]
+    },
+    "active_in_levels": ["village"],
+    "tags": ["fire", "voice", "freedom"],
+    "visual": {
+      "tag_ia": "a fiery-eyed bard singing to a crowd under a burning sky"
       "tag_ia": "young rebel with a scarf and parchment in a crowded tavern"
     }
   }

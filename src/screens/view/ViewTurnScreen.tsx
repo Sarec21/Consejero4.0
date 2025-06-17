@@ -3,9 +3,22 @@ interface ViewTurnScreenProps {
   advice: string
   onAdviceChange: (value: string) => void
   onSend: () => void
+  debugCharacters?: {
+    id: string
+    name: string
+    archetype: string
+    tags: string[]
+    visual?: { tag_ia: string }
+  }[]
 }
 
-export default function ViewTurnScreen({ rumor, advice, onAdviceChange, onSend }: ViewTurnScreenProps) {
+export default function ViewTurnScreen({
+  rumor,
+  advice,
+  onAdviceChange,
+  onSend,
+  debugCharacters,
+}: ViewTurnScreenProps) {
   return (
     <div>
       {rumor && (
@@ -21,6 +34,24 @@ export default function ViewTurnScreen({ rumor, advice, onAdviceChange, onSend }
         placeholder="Your advice"
       />
       <button onClick={onSend}>Send Advice</button>
+      {debugCharacters && debugCharacters.length > 0 && (
+        <details style={{ marginTop: '1rem' }}>
+          <summary>Debug Characters</summary>
+          <div style={{ fontSize: '0.85rem' }}>
+            <h4>🧍 Activated Characters:</h4>
+            <ul>
+              {debugCharacters.map((c) => (
+                <li key={c.id} style={{ marginBottom: '0.5rem' }}>
+                  {c.name} [{c.archetype}]: {c.tags.join(', ')}
+                  {c.visual?.tag_ia && (
+                    <div style={{ opacity: 0.7 }}>{c.visual.tag_ia}</div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </details>
+      )}
     </div>
   )
 }

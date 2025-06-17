@@ -5,6 +5,7 @@ import { checkAndTriggerMutations } from '../../lib/mutationLogic'
 import { getAvailableEvents } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
 import { getRumorForCurrentState } from '../../lib/rumorSelector'
+import { getAvailableCharacters, CharacterEntry } from '../../lib/characterUtils'
 
 export default function TurnScreen() {
   const gameState = useGameState()
@@ -16,6 +17,8 @@ export default function TurnScreen() {
     setActiveEvents,
     addRumors,
     rumorsQueue,
+    level,
+    currentEmotion,
   } = gameState
 
   /* eslint-disable react-hooks/exhaustive-deps */
@@ -30,7 +33,15 @@ export default function TurnScreen() {
   const currentRumorText =
     rumorsQueue.length > 0 ? rumorsQueue[rumorsQueue.length - 1] : null
   const [advice, setAdvice] = useState('')
+  const [availableChars, setAvailableChars] = useState<CharacterEntry[]>([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (mainPlot) {
+      const chars = getAvailableCharacters(mainPlot, currentEmotion, level)
+      setAvailableChars(chars)
+    }
+  }, [mainPlot, currentEmotion, level])
 
   const handleSend = () => {
     setPlayerAdvice(advice)
@@ -50,6 +61,7 @@ export default function TurnScreen() {
       advice={advice}
       onAdviceChange={setAdvice}
       onSend={handleSend}
+      debugCharacters={availableChars}
     />
   )
 }
