@@ -10,6 +10,34 @@ const events = readJSON('src/data/events.json');
 const twists = readJSON('src/data/twists.json');
 const characters = readJSON('src/data/characters.json');
 const kings = readJSON('src/data/kings.json');
+const phases = readJSON('src/data/plot_phases.json');
+
+const validLevels = [
+  'village',
+  'governor',
+  'royal_court',
+  'mythical_kingdom',
+  'legendary_oracle',
+];
+
+const validTags = new Set([
+  ...plots.flatMap(p => p.tags || []),
+  ...events.flatMap(e => e.tags || []),
+  ...kings.flatMap(k => k.tags || []),
+  ...phases.flatMap(ph => ph.tags || []),
+  ...characters.flatMap(c => c.tags || []),
+  ...characters.flatMap(c => c.appearance_conditions?.plot_tags || []),
+]);
+
+const validFactions = new Set([
+  ...plots.flatMap(p => (p.recommended_characters?.factions || [])),
+  ...characters.map(c => c.faction),
+]);
+
+const validArchetypes = new Set([
+  ...plots.flatMap(p => (p.recommended_characters?.archetypes || [])),
+  ...characters.map(c => c.archetype),
+]);
 
 function findMatchingKing(plot) {
   let bestMatch = null;
@@ -59,6 +87,44 @@ function validatePlot(plot) {
   return errors;
 }
 
+function validateCharacter(ch) {
+  const errors = [];
+  if (!hasTagIA(ch)) errors.push('visual.tag_ia missing');
+  if (!validFactions.has(ch.faction)) errors.push(`invalid faction ${ch.faction}`);
+  if (!validArchetypes.has(ch.archetype)) errors.push(`invalid archetype ${ch.archetype}`);
+
+  if (!Array.isArray(ch.active_in_levels)) {
+    errors.push('active_in_levels missing or not array');
+  } else {
+    const invalid = ch.active_in_levels.filter(l => !validLevels.includes(l));
+    if (invalid.length) errors.push(`invalid active_in_levels: ${invalid.join(', ')}`);
+  }
+
+  const cond = ch.appearance_conditions;
+  if (!cond) {
+    errors.push('appearance_conditions missing');
+  } else {
+    if (!Array.isArray(cond.plot_tags)) errors.push('plot_tags missing');
+    else {
+      const bad = cond.plot_tags.filter(t => !validTags.has(t));
+      if (bad.length) errors.push(`invalid plot_tags: ${bad.join(', ')}`);
+    }
+    if (!Array.isArray(cond.current_emotion)) errors.push('current_emotion missing');
+    if (!Array.isArray(cond.advisor_levels)) errors.push('advisor_levels missing');
+    else {
+      const badL = cond.advisor_levels.filter(l => !validLevels.includes(l));
+      if (badL.length) errors.push(`invalid advisor_levels: ${badL.join(', ')}`);
+    }
+  }
+
+  if (Array.isArray(ch.tags)) {
+    const bad = ch.tags.filter(t => !validTags.has(t));
+    if (bad.length) errors.push(`invalid tags: ${bad.join(', ')}`);
+  }
+
+  return errors;
+}
+
 const results = [];
 for (const plot of plots) {
   const errors = validatePlot(plot);
@@ -74,7 +140,18 @@ const twistsValid = validateCollection('twists', twists);
 const charsValid = validateCollection('characters', characters);
 const kingsValid = validateCollection('kings', kings);
 
+const charResults = [];
+for (const ch of characters) {
+  charResults.push({ id: ch.id, errors: validateCharacter(ch) });
+}
+
 for (const res of results) {
+  const status = res.errors.length ? '❌' : '✅';
+  console.log(`${status} ${res.id}`);
+  if (res.errors.length) console.log('  ' + res.errors.join('; '));
+}
+
+for (const res of charResults) {
   const status = res.errors.length ? '❌' : '✅';
   console.log(`${status} ${res.id}`);
   if (res.errors.length) console.log('  ' + res.errors.join('; '));
