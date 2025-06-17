@@ -1,0 +1,13 @@
+[
+  {
+    "id": "rumor_low_taxes",
+    "text": "Whispers say the King plans to lower taxes... or raise them.",
+    "emotion_tags": ["distrust", "curiosity"],
+    "kingdom_tags": ["reform", "instability"],
+    "level": ["village", "governor"],
+    "intensity": "low",
+    "visual": {
+      "tag_ia": "peasants murmuring around village fire"
+    }
+  }
+]

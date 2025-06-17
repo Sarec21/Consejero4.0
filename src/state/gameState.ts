@@ -43,6 +43,7 @@ export interface GameState {
   war: boolean
   activatedMutations: string[]
   unlockedCards: string[]
+  currentEmotion: string[]
   rumorsQueue: string[]
   activeEvents: PlotEvent[],
   currentEvent: import('../lib/eventUtils').Event | null
@@ -60,6 +61,7 @@ export interface GameState {
   addActivatedMutation: (id: string) => void
   setActiveEvents: (events: PlotEvent[]) => void,
   addUnlockedCards: (cards: string[]) => void
+  setCurrentEmotion: (emotion: string[]) => void
   addRumors: (rumors: string[]) => void
   setCurrentEvent: (event: import('../lib/eventUtils').Event | null) => void
   resetMainPlot: () => void
@@ -80,6 +82,7 @@ export const useGameState = create<GameState>((set) => ({
   war: false,
   activatedMutations: [],
   unlockedCards: [],
+  currentEmotion: [],
   rumorsQueue: [],
   currentEvent: null,
   activeEvents: [],
@@ -94,6 +97,7 @@ export const useGameState = create<GameState>((set) => ({
   setPrestige: (prestige) => set({ prestige }),
   setTrust: (trust) => set({ trust }),
   setWar: (war) => set({ war }),
+  setCurrentEmotion: (currentEmotion) => set({ currentEmotion }),
   addActivatedMutation: (id) =>
     set((state) => ({ activatedMutations: [...state.activatedMutations, id] })),
   addUnlockedCards: (cards) =>
@@ -118,6 +122,7 @@ export const useGameState = create<GameState>((set) => ({
       activatedMutations: [],
       unlockedCards: [],
       activeEvents: [],
+      currentEmotion: [],
       rumorsQueue: [],
       currentEvent: null,
     }),
