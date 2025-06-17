@@ -5,6 +5,14 @@ import { checkAndTriggerMutations } from '../../lib/mutationLogic'
 import { getAvailableEvents } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
 import { selectRumor, getMatchingRumors } from '../../lib/rumorSelector'
+import rumors from '../../data/rumors.json'
+
+function getRumorTextById(id: string): string {
+  const found = (rumors as Array<{ id: string; text: string }>).find(
+    (r) => r.id === id,
+  )
+  return found?.text || ''
+}
 
 export default function TurnScreen() {
   const gameState = useGameState()
@@ -15,6 +23,7 @@ export default function TurnScreen() {
     setCurrentTurn,
     setActiveEvents,
     addRumors,
+    rumorsQueue,
   } = gameState
   const matchingRumors = getMatchingRumors(
     gameState.currentEmotion || [],
@@ -25,6 +34,8 @@ export default function TurnScreen() {
   useEffect(() => {
     if (rumor) addRumors([rumor])
   }, [rumor, addRumors])
+  const currentRumorId = rumorsQueue.length > 0 ? rumorsQueue[0] : null
+  const currentRumorText = currentRumorId ? getRumorTextById(currentRumorId) : ''
   const [advice, setAdvice] = useState('')
   const navigate = useNavigate()
 
@@ -42,7 +53,7 @@ export default function TurnScreen() {
 
   return (
     <ViewTurnScreen
-      rumor={rumor}
+      rumor={currentRumorText}
       advice={advice}
       onAdviceChange={setAdvice}
       onSend={handleSend}
