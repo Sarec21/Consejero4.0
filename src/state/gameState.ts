@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import type { King } from '../types'
+import type { King, Character } from '../types'
+import charactersData from '../data/characters.json'
 import type { Event as PlotEvent } from "../lib/eventSelector"
 
 export interface Plot {
@@ -47,6 +48,7 @@ export interface GameState {
   rumorsQueue: string[]
   activeEvents: PlotEvent[],
   currentEvent: import('../lib/eventUtils').Event | null
+  characters: Character[]
   setKingName: (name: string) => void
   setKingdom: (kingdom: string) => void
   setPlayerAdvice: (advice: string) => void
@@ -86,6 +88,7 @@ export const useGameState = create<GameState>((set) => ({
   currentEmotion: [],
   rumorsQueue: [],
   currentEvent: null,
+  characters: charactersData as Character[],
   activeEvents: [],
   setKingName: (kingName) => set({ kingName }),
   setKingdom: (kingdom) => set({ kingdom }),
@@ -127,5 +130,6 @@ export const useGameState = create<GameState>((set) => ({
       currentEmotion: [],
       rumorsQueue: [],
       currentEvent: null,
+      characters: charactersData as Character[],
     }),
 }))

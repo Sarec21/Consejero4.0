@@ -13,26 +13,24 @@ export interface King {
 
 export interface Character {
   id: string
-  nombre: string
-  descripcion: string
-  faccion: string
-  arquetipo: string
-  etiquetas: string[]
-  activo_en_niveles: (
-    | "village"
-    | "governor"
-    | "royal_court"
-    | "mythical_kingdom"
-    | "legendary_oracle"
-  )[]
-  oculto?: boolean
-  condiciones_aparicion?: {
-    niveles?: string[]
-    etiquetas?: string[]
-    facciones?: string[]
-    arquetipos?: string[]
+  name: string
+  archetype: string
+  faction: string
+  type: 'visible' | 'hidden'
+  appearance_conditions: {
+    plot_tags: string[]
+    current_emotion: string[]
+    advisor_levels: string[]
   }
-  visual?: string
+  active_in_levels: (
+    | 'village'
+    | 'governor'
+    | 'royal_court'
+    | 'mythical_kingdom'
+    | 'legendary_oracle'
+  )[]
+  tags: string[]
+  visual: { tag_ia: string }
 }
 
 export interface Event {

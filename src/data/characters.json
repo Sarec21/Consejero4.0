@@ -1,198 +1,87 @@
 [
   {
-    "id": "traitor_noble_02",
+    "id": "traitor_lord_varell",
     "name": "Lord Varell",
     "archetype": "traitor",
     "faction": "nobility",
     "type": "hidden",
     "appearance_conditions": {
-      "plot_tags": [
-        "intrigue",
-        "blood"
-      ],
-      "current_emotion": [
-        "fear"
-      ],
-      "advisor_level": [
-        "royal_court"
-      ]
+      "plot_tags": ["intrigue", "blood"],
+      "current_emotion": ["fear"],
+      "advisor_levels": ["royal_court"]
     },
-    "active_in_levels": [
-      "royal_court",
-      "mythical_kingdom"
-    ],
-    "tags": [
-      "ambition",
-      "coldness",
-      "power"
-    ],
+    "active_in_levels": ["royal_court", "mythical_kingdom"],
+    "tags": ["ambition", "coldness", "power"],
     "visual": {
-      "tag_ia": "dark nobleman with red cloak in medieval war chamber"
+      "tag_ia": "dark noble with a red cloak in a medieval war chamber"
     }
   },
   {
-    "id": "spy_guildmaster_01",
-    "name": "Master Elvan",
-    "archetype": "spy",
-    "faction": "merchant_guild",
-    "type": "hidden",
+    "id": "smuggler_ilara",
+    "name": "Ilara",
+    "archetype": "smuggler",
+    "faction": "merchant",
+    "type": "visible",
     "appearance_conditions": {
-      "plot_tags": [
-        "intrigue",
-        "trade"
-      ],
-      "current_emotion": [
-        "suspicion"
-      ],
-      "advisor_level": [
-        "governor"
-      ]
+      "plot_tags": ["trade", "intrigue"],
+      "current_emotion": ["suspicion"],
+      "advisor_levels": ["governor"]
     },
-    "active_in_levels": [
-      "governor",
-      "royal_court"
-    ],
-    "tags": [
-      "cunning",
-      "secrecy",
-      "influence"
-    ],
+    "active_in_levels": ["governor", "royal_court"],
+    "tags": ["greed", "cunning", "connections"],
     "visual": {
-      "tag_ia": "hooded guildmaster with scrolls and coins in a shadowy market hall"
+      "tag_ia": "clever woman with jewelry and hidden blades in a shadowy market"
     }
   },
   {
-    "id": "warrior_veteran_05",
-    "name": "Ser Kael",
-    "archetype": "veteran",
+    "id": "border_guard_erik",
+    "name": "Erik",
+    "archetype": "soldier",
     "faction": "military",
     "type": "visible",
     "appearance_conditions": {
-      "plot_tags": [
-        "war",
-        "honor"
-      ],
-      "current_emotion": [
-        "anger",
-        "courage"
-      ],
-      "advisor_level": [
-        "village",
-        "royal_court"
-      ]
+      "plot_tags": ["war", "tension"],
+      "current_emotion": ["alert"],
+      "advisor_levels": ["village"]
     },
-    "active_in_levels": [
-      "village",
-      "royal_court"
-    ],
-    "tags": [
-      "bravery",
-      "loyalty",
-      "grief"
-    ],
+    "active_in_levels": ["village", "governor"],
+    "tags": ["loyalty", "discipline", "risk"],
     "visual": {
-      "tag_ia": "battle-scarred knight with worn armor standing in a foggy battlefield"
+      "tag_ia": "young soldier with worn armor standing on a snowy border"
     }
   },
   {
-    "id": "spy_malek_dunes",
-    "name": "Malek of the Red Scarf",
-    "description": "A mysterious figure who sells secrets to the highest bidder.",
-    "faction": "merchants",
-    "archetype": "spy",
-    "tags": [
-      "ambition",
-      "occult",
-      "desert"
-    ],
-    "visual": {
-      "tag_ia": "hooded spy with red scarf in a desert market"
-    },
-    "active_in_levels": [
-      "royal_court"
-    ]
-  },
-  {
-    "id": "loyal_guard_valka",
-    "name": "Valka Stonefist",
-    "description": "A veteran of many wars, loyal to the old code of honor.",
-    "faction": "guards",
-    "archetype": "old_loyalist",
-    "tags": [
-      "honor",
-      "loyalty",
-      "tradition"
-    ],
-    "visual": {
-      "tag_ia": "old armored guard with grey beard at a mountain watchtower"
-    },
-    "active_in_levels": [
-      "mythical_kingdom"
-    ]
-  },
-  {
-    "id": "traitor_noble_varim",
-    "name": "Lord Varim Sandshade",
-    "description": "Whispers follow his steps through the halls of power.",
-    "faction": "nobility",
-    "archetype": "traitor",
-    "tags": [
-      "coldness",
-      "ambition",
-      "intrigue"
-    ],
-    "hidden": true,
+    "id": "oracle_lyssan",
+    "name": "Lyssan",
+    "archetype": "oracle",
+    "faction": "spiritual",
+    "type": "hidden",
     "appearance_conditions": {
-      "current_emotion": [
-        "fear",
-        "distrust"
-      ],
-      "advisor_level": [
-        "royal_court"
-      ],
-      "plot_tags": [
-        "betrayal",
-        "secrecy"
-      ]
+      "plot_tags": ["destiny", "legacy"],
+      "current_emotion": ["uncertainty"],
+      "advisor_levels": ["mythical_kingdom"]
     },
+    "active_in_levels": ["mythical_kingdom", "legendary_oracle"],
+    "tags": ["vision", "mystery", "fate"],
     "visual": {
-      "tag_ia": "noble with dark eyes and golden ring in desert palace"
-    },
-    "active_in_levels": [
-      "royal_court",
-      "mythical_kingdom"
-    ]
+      "tag_ia": "blind oracle wrapped in silver veils surrounded by stars"
+    }
   },
   {
-    "id": "heir_in_exile_eira",
-    "name": "Eira of the North Flame",
-    "description": "Once heir to the northern clans, now vanished and whispered of.",
-    "faction": "clans",
-    "archetype": "heir",
-    "tags": [
-      "conflict",
-      "destiny",
-      "oath"
-    ],
-    "hidden": true,
+    "id": "rebel_tanner",
+    "name": "Tanner",
+    "archetype": "agitator",
+    "faction": "rebels",
+    "type": "visible",
     "appearance_conditions": {
-      "current_emotion": [
-        "hope",
-        "guilt"
-      ],
-      "advisor_level": [
-        "mythical_kingdom"
-      ],
-      "plot_tags": [
-        "legacy",
-        "loyalty"
-      ]
+      "plot_tags": ["recovery", "balance"],
+      "current_emotion": ["hope"],
+      "advisor_levels": ["village"]
     },
+    "active_in_levels": ["village", "governor"],
+    "tags": ["hope", "risk", "disruption"],
     "visual": {
-      "tag_ia": "female warrior with northern tattoos in snowy exile"
-    },
-    "active_in_levels": [
-      "mythical_kingdom"
-    ]
+      "tag_ia": "young rebel with a scarf and parchment in a crowded tavern"
+    }
   }
 ]
