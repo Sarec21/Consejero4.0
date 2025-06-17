@@ -49,5 +49,65 @@
     "visual": {
       "ai_prompt": "battle-scarred knight with worn armor standing in a foggy battlefield"
     }
+  },
+  {
+    "id": "spy_malek_dunes",
+    "name": "Malek of the Red Scarf",
+    "description": "A mysterious figure who sells secrets to the highest bidder.",
+    "faction": "mercaderes",
+    "archetype": "espía",
+    "tags": ["ambicion", "ocultismo", "desierto"],
+    "active_levels": ["royal_court"],
+    "visual": {
+      "tag_ia": "hooded spy with red scarf in a desert market"
+    }
+  },
+  {
+    "id": "loyal_guard_valka",
+    "name": "Valka Stonefist",
+    "description": "A veteran of many wars, loyal to the old code of honor.",
+    "faction": "guardia",
+    "archetype": "viejo_leal",
+    "tags": ["honor", "lealtad", "tradición"],
+    "active_levels": ["mythical_kingdom"],
+    "visual": {
+      "tag_ia": "old armored guard with grey beard at a mountain watchtower"
+    }
+  },
+  {
+    "id": "traitor_noble_varim",
+    "name": "Lord Varim Sandshade",
+    "description": "Whispers follow his steps through the halls of power.",
+    "faction": "nobleza",
+    "archetype": "traidor",
+    "tags": ["frialdad", "ambicion", "intriga"],
+    "active_levels": ["royal_court", "mythical_kingdom"],
+    "hidden": true,
+    "appearance_conditions": {
+      "tags_plot": ["betrayal", "secrecy"],
+      "current_emotion": ["miedo", "desconfianza"],
+      "advisor_level": ["royal_court"]
+    },
+    "visual": {
+      "tag_ia": "noble with dark eyes and golden ring in desert palace"
+    }
+  },
+  {
+    "id": "heir_in_exile_eira",
+    "name": "Eira of the North Flame",
+    "description": "Once heir to the northern clans, now vanished and whispered of.",
+    "faction": "clanes",
+    "archetype": "heredero",
+    "tags": ["conflicto", "destino", "juramento"],
+    "active_levels": ["mythical_kingdom"],
+    "hidden": true,
+    "appearance_conditions": {
+      "tags_plot": ["legacy", "loyalty"],
+      "current_emotion": ["esperanza", "culpa"],
+      "advisor_level": ["mythical_kingdom"]
+    },
+    "visual": {
+      "tag_ia": "female warrior with northern tattoos in snowy exile"
+    }
   }
 ]
