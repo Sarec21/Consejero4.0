@@ -8,7 +8,11 @@ interface ViewTurnScreenProps {
 export default function ViewTurnScreen({ rumor, advice, onAdviceChange, onSend }: ViewTurnScreenProps) {
   return (
     <div>
-      {rumor && <p>{rumor}</p>}
+      {rumor && (
+        <div className="rumor-box">
+          <p className="rumor-text">🕵️ Rumor: {rumor}</p>
+        </div>
+      )}
       <p>The villagers have gathered in the square with torches.</p>
       <p>Should we intervene or let them speak freely?</p>
       <textarea
