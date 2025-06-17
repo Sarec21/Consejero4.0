@@ -5,14 +5,7 @@ import { checkAndTriggerMutations } from '../../lib/mutationLogic'
 import { getAvailableEvents } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
 import { selectRumor, getMatchingRumors } from '../../lib/rumorSelector'
-import rumors from '../../data/rumors.json'
-
-function getRumorTextById(id: string): string {
-  const found = (rumors as Array<{ id: string; text: string }>).find(
-    (r) => r.id === id,
-  )
-  return found?.text || ''
-}
+import { getRumorTextById } from '../../lib/rumorUtils'
 
 export default function TurnScreen() {
   const gameState = useGameState()
