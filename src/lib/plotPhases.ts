@@ -7,12 +7,12 @@ export interface PlotPhase {
   title: string
   summary: string
   mood: string
-  visual: string
+  visual: { tag_ia: string }
   tags: string[]
   forcedAdvanceAfter: number
 }
 
-const plotPhases = plotPhasesData as PlotPhase[]
+const plotPhases = plotPhasesData as unknown as PlotPhase[]
 
 export function getPhasesForPlot(plotId: string): PlotPhase[] {
   return plotPhases.filter((phase) => phase.plotId === plotId)

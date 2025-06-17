@@ -66,3 +66,13 @@ export interface Kingdom {
   description?: string
 }
 
+
+export interface PromptTemplate {
+  id: string
+  type: 'scene' | 'event' | 'reaction' | 'twist'
+  context: string
+  requiredVariables: string[]
+  instructions: string
+  outputExample: string
+  visual_tags: string[]
+}

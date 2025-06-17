@@ -1,4 +1,6 @@
 import { callAssistant } from './openai'
+import { getPromptByContext } from './promptSelector'
+import { validatePromptVariables } from './promptUtils'
 
 import scenesData from '../data/reusable_scenes.json'
 import type { Plot, GameState } from '../state/gameState'
@@ -10,12 +12,12 @@ export interface ReusableScene {
   tags: string[]
   level: Plot['level']
   tone: string
-  visual: string
+  visual: { tag_ia: string }
   linked_plot_tags?: string[]
   conditions?: Record<string, unknown>
 }
 
-const scenes = scenesData as ReusableScene[]
+const scenes = scenesData as unknown as ReusableScene[]
 
 function conditionsMet(scene: ReusableScene, gameState: GameState): boolean {
   if (!scene.conditions) return true
@@ -91,15 +93,76 @@ export async function generateInitialPlot(): Promise<Plot | null> {
   }
 }
 
+export async function generateNarrativeScene(
+  gameState: GameState,
+  context = 'start_of_turn',
+): Promise<TurnContext> {
+  const template = getPromptByContext(context)
+  const fallback: TurnContext = {
+    sceneDescription:
+      'The court murmurs restlessly while shadows gather in the corners of the hall.',
+    sceneVisual: null,
+  }
+
+  if (!template) return fallback
+  if (!validatePromptVariables(template, gameState)) return fallback
+
+  const variables: Record<string, unknown> = {}
+  for (const v of template.requiredVariables) {
+    switch (v) {
+      case 'king':
+        variables.king = gameState.currentKing
+        break
+      case 'plot':
+        variables.plot = gameState.mainPlot
+        break
+      case 'kingdom':
+        variables.kingdom = gameState.kingdom
+        break
+      case 'playerReputation':
+        variables.playerReputation = {
+          prestige: gameState.prestige,
+          trust: gameState.trust,
+        }
+        break
+      case 'currentEmotion':
+        variables.currentEmotion = gameState.currentEmotion
+        break
+      default:
+        break
+    }
+  }
+
+  const prompt = `${template.instructions}\n\n${JSON.stringify(variables)}`
+
+  try {
+    const result = await callAssistant('asst_xBvJOGRlyLWAJlQeWWTLFw8q', prompt)
+    return {
+      sceneDescription: result || template.outputExample,
+      sceneVisual: null,
+    }
+  } catch (error) {
+    console.error('Failed to generate narrative scene', error)
+    return { ...fallback, sceneDescription: template.outputExample }
+  }
+}
+
 export interface TurnContext {
   sceneDescription: string
   sceneVisual: string | null
 }
 
-export function generateTurnContent(
+export async function generateTurnContent(
   plot: Plot,
   gameState: GameState,
-): TurnContext {
+): Promise<TurnContext> {
+  try {
+    const gptScene = await generateNarrativeScene(gameState, 'start_of_turn')
+    if (gptScene.sceneDescription) return gptScene
+  } catch {
+    // ignore and fall back to local scenes
+  }
+
   const possibleScenes = getEligibleScenes(plot, gameState)
   const scene = possibleScenes.length > 0
     ? possibleScenes[Math.floor(Math.random() * possibleScenes.length)]
@@ -107,6 +170,6 @@ export function generateTurnContent(
   const fallback = 'The court murmurs restlessly while shadows gather in the corners of the hall.'
   return {
     sceneDescription: scene ? scene.description : fallback,
-    sceneVisual: scene ? scene.visual : null,
+    sceneVisual: scene ? scene.visual.tag_ia : null,
   }
 }
