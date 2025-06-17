@@ -6,9 +6,7 @@
     "kingdom_tags": ["reform", "instability"],
     "level": ["village", "governor"],
     "intensity": "low",
-    "visual": {
-      "tag_ia": "peasants murmuring around village fire"
-    }
+    "visual": {"tag_ia": "peasants murmuring around village fire"}
   },
   {
     "id": "rumor_shadow_council",
@@ -17,9 +15,7 @@
     "kingdom_tags": ["power", "intrigue"],
     "level": ["royal_court", "mythical_kingdom"],
     "intensity": "medium",
-    "visual": {
-      "tag_ia": "hooded figures in dark chamber whispering behind throne"
-    }
+    "visual": {"tag_ia": "hooded figures in dark chamber whispering behind throne"}
   },
   {
     "id": "rumor_return_of_heir",
@@ -28,8 +24,76 @@
     "kingdom_tags": ["legacy", "loyalty"],
     "level": ["governor", "mythical_kingdom"],
     "intensity": "high",
-    "visual": {
-      "tag_ia": "hooded figure with royal crest in snowy forest"
-    }
+    "visual": {"tag_ia": "hooded figure with royal crest in snowy forest"}
+  },
+  {
+    "id": "rumor_reform_wave",
+    "text": "Taverns buzz about sweeping reforms soon to shake the realm.",
+    "emotion_tags": ["hope", "curiosity"],
+    "kingdom_tags": ["reform"],
+    "level": ["governor", "royal_court"],
+    "intensity": "medium",
+    "conditions": {"prestigeAbove": 5},
+    "visual": {"tag_ia": "scholars debating scrolls of new laws"}
+  },
+  {
+    "id": "rumor_murder_in_court",
+    "text": "A courtier whispers that a noble was slain within the palace walls.",
+    "emotion_tags": ["fear", "distrust"],
+    "kingdom_tags": ["power", "intrigue"],
+    "level": ["royal_court"],
+    "intensity": "high",
+    "conditions": {"trustBelow": 60, "war": false},
+    "visual": {"tag_ia": "bloodied dagger on embroidered cushion"}
+  },
+  {
+    "id": "rumor_tax_resistance",
+    "text": "Some villagers refuse to pay the latest taxes, quietly banding together.",
+    "emotion_tags": ["anger", "distrust"],
+    "kingdom_tags": ["economy", "dissent"],
+    "level": ["village"],
+    "intensity": "low",
+    "conditions": {"trustBelow": 50},
+    "visual": {"tag_ia": "peasants hiding coins from royal collectors"}
+  },
+  {
+    "id": "rumor_border_threat",
+    "text": "Scouts report enemy banners seen beyond the eastern hills.",
+    "emotion_tags": ["fear"],
+    "kingdom_tags": ["war"],
+    "level": ["governor", "royal_court"],
+    "intensity": "medium",
+    "conditions": {"war": true},
+    "visual": {"tag_ia": "watchtower spotting distant army"}
+  },
+  {
+    "id": "rumor_mysterious_prophet",
+    "text": "A wandering prophet predicts doom unless the king heeds ancient omens.",
+    "emotion_tags": ["fear", "confusion"],
+    "kingdom_tags": ["mysticism"],
+    "level": ["mythical_kingdom", "legendary_oracle"],
+    "intensity": "high",
+    "conditions": {"trustBelow": 40},
+    "visual": {"tag_ia": "robed seer speaking before awed crowd"}
+  },
+  {
+    "id": "rumor_bandit_activity",
+    "text": "Merchants complain of bandits growing bold along the trade roads.",
+    "emotion_tags": ["anger"],
+    "kingdom_tags": ["economy", "instability"],
+    "level": ["village", "governor"],
+    "intensity": "low",
+    "conditions": {"war": false},
+    "visual": {"tag_ia": "bandits ambushing caravan at dusk"}
+  },
+  {
+    "id": "rumor_secret_alliance",
+    "text": "Rumor has it the king seeks a secret pact with a rival realm.",
+    "emotion_tags": ["curiosity", "distrust"],
+    "kingdom_tags": ["intrigue", "diplomacy"],
+    "level": ["royal_court", "mythical_kingdom"],
+    "intensity": "medium",
+    "conditions": {"war": false, "prestigeAbove": 10},
+    "visual": {"tag_ia": "royal envoy meeting in candlelit chamber"}
   }
 ]
