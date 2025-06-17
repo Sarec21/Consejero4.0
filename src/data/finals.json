@@ -1,0 +1,32 @@
+[
+  {
+    "id": "final_trust_peace",
+    "title": "Harmony through Trust",
+    "description": "Thanks to your measured words and wisdom, the King and the people embraced peace.",
+    "condition": {
+      "trust_min": 80,
+      "war": false
+    },
+    "achievement_id": "golden_counselor",
+    "card_id": "card_peace",
+    "visual": {
+      "tag_ia": "golden throne room with peaceful faces, sunlight through stained glass",
+      "icon": "\ud83c\udf3f"
+    }
+  },
+  {
+    "id": "final_chaos_war",
+    "title": "Chaos of Betrayal",
+    "description": "Distrust and bloodshed consumed the realm after your ill-timed counsels.",
+    "condition": {
+      "trust_max": 30,
+      "war": true
+    },
+    "achievement_id": "dark_advisor",
+    "card_id": "card_war",
+    "visual": {
+      "tag_ia": "burning battlements under a crimson sky, despairing faces",
+      "icon": "\u2694\ufe0f"
+    }
+  }
+]
