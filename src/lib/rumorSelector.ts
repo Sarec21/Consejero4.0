@@ -1,84 +1,52 @@
 import rumors from '../data/rumors.json'
-import type { GameState } from '../state/gameState'
+import { useGameState } from '../state/gameState'
 
-type Rumor = {
+interface Rumor {
   id: string
-  text: string
-  emotion_tags?: string[]
-  kingdom_tags?: string[]
-  level?: string[]
-  intensity?: 'low' | 'medium' | 'high'
-  conditions?: {
-    prestigeAbove?: number
-    trustBelow?: number
-    war?: boolean
+  texto: string
+  condiciones?: {
+    prestigio_min?: number
+    prestigio_max?: number
+    confianza_min?: number
+    confianza_max?: number
+    guerra?: boolean
+    turno_min?: number
+    turno_max?: number
   }
+  peso?: number
+  tipo?: string
 }
 
-export function getMatchingRumors(
-  currentEmotion: string[],
-  kingdomTags: string[],
-  level: string,
-): Rumor[] {
-  return (rumors as unknown as Rumor[]).filter((rumor) => {
-    const matchesEmotion = rumor.emotion_tags
-      ? rumor.emotion_tags.some((e) => currentEmotion.includes(e))
-      : true
-    const matchesTags = rumor.kingdom_tags
-      ? rumor.kingdom_tags.some((tag) => kingdomTags.includes(tag))
-      : true
-    const matchesLevel = rumor.level ? rumor.level.includes(level) : true
-    return matchesEmotion && matchesTags && matchesLevel
-  })
-}
+export function getRumorForCurrentState() {
+  // Map actual state properties to Spanish variable names
+  const {
+    trust: confianza,
+    prestige: prestigio,
+    war: guerra,
+    currentTurn,
+  } = useGameState.getState()
 
-export function selectRumor(state: GameState): string | null {
-  const emotion = state.currentEmotion || []
-  const kingdomTags = state.mainPlot?.tags || []
-  const level = state.level
-
-  const candidates = getMatchingRumors(emotion, kingdomTags, level)
-  if (candidates.length === 0) return null
-
-  const weighted: Rumor[] = []
-  for (const rumor of candidates) {
-    let weight = 1
-    if (rumor.intensity === 'low') weight = 3
-    else if (rumor.intensity === 'medium') weight = 2
-    const strongMatch =
-      (rumor.emotion_tags?.every((e) => emotion.includes(e)) ?? false) &&
-      (rumor.kingdom_tags?.every((t) => kingdomTags.includes(t)) ?? false)
-    if (rumor.intensity === 'high' && strongMatch) weight += 2
-    for (let i = 0; i < weight; i++) weighted.push(rumor)
-  }
-
-  const chosen = weighted[Math.floor(Math.random() * weighted.length)]
-  return chosen.text
-}
-
-export function pickRandomRumor(state: GameState): string | null {
-  const { level, currentEmotion = [], mainPlot, prestige, trust, war } = state
-
-  const candidates = (rumors as unknown as Rumor[]).filter((rumor) => {
-    const matchesEmotion = rumor.emotion_tags
-      ? rumor.emotion_tags.some((e) => currentEmotion.includes(e))
-      : true
-    const matchesTags = rumor.kingdom_tags
-      ? rumor.kingdom_tags.some((tag) => (mainPlot?.tags || []).includes(tag))
-      : true
-    const matchesLevel = rumor.level ? rumor.level.includes(level) : true
-    const cond = rumor.conditions
-    const matchesCond = cond
-      ? !(
-          (cond.prestigeAbove !== undefined && prestige <= cond.prestigeAbove) ||
-          (cond.trustBelow !== undefined && trust >= cond.trustBelow) ||
-          (cond.war !== undefined && war !== cond.war)
-        )
-      : true
-    return matchesEmotion && matchesTags && matchesLevel && matchesCond
+  const candidatos = (rumors as unknown as Rumor[]).filter(rumor => {
+    const c = rumor.condiciones || {}
+    if (c.prestigio_min !== undefined && prestigio < c.prestigio_min) return false
+    if (c.prestigio_max !== undefined && prestigio > c.prestigio_max) return false
+    if (c.confianza_min !== undefined && confianza < c.confianza_min) return false
+    if (c.confianza_max !== undefined && confianza > c.confianza_max) return false
+    if (c.guerra !== undefined && guerra !== c.guerra) return false
+    if (c.turno_min !== undefined && currentTurn < c.turno_min) return false
+    if (c.turno_max !== undefined && currentTurn > c.turno_max) return false
+    return true
   })
 
-  if (candidates.length === 0) return null
-  const randomIndex = Math.floor(Math.random() * candidates.length)
-  return candidates[randomIndex].text
+  if (candidatos.length === 0) return null
+
+  const totalPeso = candidatos.reduce((acc, r) => acc + (r.peso || 1), 0)
+  const random = Math.random() * totalPeso
+  let acumulado = 0
+  for (const rumor of candidatos) {
+    acumulado += rumor.peso || 1
+    if (random <= acumulado) return rumor.texto
+  }
+
+  return candidatos[0].texto
 }

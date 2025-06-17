@@ -4,7 +4,7 @@ import { useGameState } from '../../state/gameState'
 import { checkAndTriggerMutations } from '../../lib/mutationLogic'
 import { getAvailableEvents } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
-import { pickRandomRumor } from '../../lib/rumorSelector'
+import { getRumorForCurrentState } from '../../lib/rumorSelector'
 
 export default function TurnScreen() {
   const gameState = useGameState()
@@ -20,7 +20,7 @@ export default function TurnScreen() {
 
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
-    const rumor = pickRandomRumor(useGameState.getState())
+    const rumor = getRumorForCurrentState()
     if (rumor && !rumorsQueue.includes(rumor)) {
       addRumors([rumor])
     }
