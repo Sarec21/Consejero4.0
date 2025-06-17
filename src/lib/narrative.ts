@@ -1,5 +1,6 @@
 import { callAssistant } from './openai'
 import { getPromptByContext } from './promptSelector'
+import { validatePromptVariables } from './promptUtils'
 
 import scenesData from '../data/reusable_scenes.json'
 import type { Plot, GameState } from '../state/gameState'
@@ -104,6 +105,7 @@ export async function generateNarrativeScene(
   }
 
   if (!template) return fallback
+  if (!validatePromptVariables(template, gameState)) return fallback
 
   const variables: Record<string, unknown> = {}
   for (const v of template.requiredVariables) {

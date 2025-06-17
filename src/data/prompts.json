@@ -7,5 +7,23 @@
     "instructions": "You are the narrative engine of a game called El Consejero. Your job is to generate the initial scene that opens a turn, based on the player's current situation. The scene should set the tone, include subtle references to the emotional state of the court, and be symbolic or dramatic. It should never offer direct choices. The scene must be immersive, short (2–3 sentences), and written in the tone suggested by the plot. Do not use lists or markdown. Never repeat previous scenes.",
     "outputExample": "The torches flicker unevenly as the King walks in silence. Outside, whispers of rebellion seep through the frost-covered windows.",
     "visual_tags": ["symbolic", "introspective", "court_tension"]
+  },
+  {
+    "id": "reaction_to_advice",
+    "type": "reaction",
+    "context": "after_player_advice",
+    "requiredVariables": ["kingPersonality", "playerAdvice", "plotTags", "trust"],
+    "instructions": "Simulate the King's emotional reaction to the advice given by the player. Consider his personality and the emotional context of the plot. Express his response in one or two lines that feel natural, possibly ironic, angry, curious or skeptical. The reaction must feel human and match the tone of the current plot. Do not explain consequences—only the emotional reply.",
+    "outputExample": "So you suggest mercy… You may think it’s noble, but nobles rarely die for it.",
+    "visual_tags": ["emotion", "irony", "tense"]
+  },
+  {
+    "id": "twist_reveal_midplot",
+    "type": "twist",
+    "context": "midplot_twist",
+    "requiredVariables": ["currentPhase", "previousDecisions", "plotTone", "kingMood"],
+    "instructions": "Reveal a dramatic narrative twist in the middle of the current plot. Use symbols, tension or betrayal. The twist must challenge the player’s expectations and escalate the stakes. Describe it in a compact way (max 3 lines). Avoid exposition—focus on narrative impact.",
+    "outputExample": "The royal seal appears on a letter ordering the attack. But no one in the court claims to have signed it.",
+    "visual_tags": ["drama", "suspense", "betrayal"]
   }
 ]
