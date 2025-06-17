@@ -9,6 +9,7 @@ import { getAvailableCharacters, type CharacterEntry } from '../../lib/character
 import Loader from '../../components/Loader'
 import { callAssistant as rawCall } from '../../lib/openai'
 import { getPromptTemplate } from '../../lib/openai/promptTemplates'
+import { generateTurnContent } from '../../lib/narrative'
 
 export default function TurnScreen() {
   const gameState = useGameState()
@@ -41,6 +42,8 @@ export default function TurnScreen() {
   const [availableChars, setAvailableChars] = useState<CharacterEntry[]>([])
   const [currentEvent, setCurrentEvent] = useState<Event | null>(null)
   const [loading, setLoading] = useState(false)
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [dilemma, setDilemma] = useState<string | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -56,6 +59,20 @@ export default function TurnScreen() {
       setCurrentEvent(events.length > 0 ? events[0] : null)
     }
   }, [mainPlot, currentTurn])
+
+  const handleGenerateDilemma = async () => {
+    if (!mainPlot) return
+    setIsGenerating(true)
+    try {
+      const ctx = await generateTurnContent(mainPlot, useGameState.getState())
+      setDilemma(ctx.sceneDescription)
+    } catch (error) {
+      console.error('Failed to generate dilemma', error)
+      setDilemma('A troubling situation unfolds in the court.')
+    } finally {
+      setIsGenerating(false)
+    }
+  }
 
   const handleSend = async () => {
     setLoading(true)
@@ -98,6 +115,13 @@ export default function TurnScreen() {
       advice={advice}
       onAdviceChange={setAdvice}
       onSend={handleSend}
+      onGenerate={handleGenerateDilemma}
+      generating={isGenerating}
+      dilemma={dilemma}
+      trust={trust}
+      prestige={gameState.prestige}
+      kingName={currentKing?.name || gameState.kingName}
+      plotId={mainPlot?.id}
       debugInfo={
         import.meta.env.DEV
           ? `turn:${currentTurn} trust:${trust} prestige:${gameState.prestige} war:${gameState.war}\nplot:${mainPlot?.id} king:${currentKing?.id}`

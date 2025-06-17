@@ -7,6 +7,13 @@ interface ViewTurnScreenProps {
   advice: string
   onAdviceChange: (value: string) => void
   onSend: () => void
+  onGenerate: () => void
+  generating: boolean
+  dilemma: string | null
+  trust: number
+  prestige: number
+  kingName: string
+  plotId?: string
   debugInfo?: string
   debugCharacters?: {
     id: string
@@ -24,11 +31,31 @@ export default function ViewTurnScreen({
   advice,
   onAdviceChange,
   onSend,
+  onGenerate,
+  generating,
+  dilemma,
+  trust,
+  prestige,
+  kingName,
+  plotId,
   debugInfo,
   debugCharacters,
 }: ViewTurnScreenProps) {
   return (
     <div>
+      <div style={{ marginBottom: '1rem' }}>
+        <p>
+          <strong>King:</strong> {kingName}
+        </p>
+        {plotId && (
+          <p>
+            <strong>Plot:</strong> {plotId}
+          </p>
+        )}
+        <p>
+          <strong>Trust:</strong> {trust} | <strong>Prestige:</strong> {prestige}
+        </p>
+      </div>
       {rumor && (
         <div className="rumor-box">
           <p className="rumor-text">🕵️ Rumor: {rumor}</p>
@@ -41,12 +68,21 @@ export default function ViewTurnScreen({
         </div>
       )}
       {visualTag && <div style={{ opacity: 0.7 }}>Image tag: {visualTag}</div>}
-      <textarea
-        value={advice}
-        onChange={(e) => onAdviceChange(e.target.value)}
-        placeholder="Your advice"
-      />
-      <button onClick={onSend}>Send Advice</button>
+      {dilemma ? (
+        <div style={{ marginTop: '1rem' }}>
+          <p>{dilemma}</p>
+          <textarea
+            value={advice}
+            onChange={(e) => onAdviceChange(e.target.value)}
+            placeholder="Your advice"
+          />
+          <button onClick={onSend}>Continue</button>
+        </div>
+      ) : (
+        <button onClick={onGenerate} disabled={generating}>
+          {generating ? 'Generating...' : 'Generate dilemma'}
+        </button>
+      )}
       {debugInfo && (
         <pre style={{ fontSize: '0.8rem' }}>{debugInfo}</pre>
       )}
