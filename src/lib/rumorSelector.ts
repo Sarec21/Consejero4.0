@@ -3,50 +3,44 @@ import { useGameState } from '../state/gameState'
 
 interface Rumor {
   id: string
-  texto: string
-  condiciones?: {
-    prestigio_min?: number
-    prestigio_max?: number
-    confianza_min?: number
-    confianza_max?: number
-    guerra?: boolean
-    turno_min?: number
-    turno_max?: number
+  text: string
+  conditions?: {
+    prestige_min?: number
+    prestige_max?: number
+    trust_min?: number
+    trust_max?: number
+    war?: boolean
+    turn_min?: number
+    turn_max?: number
   }
-  peso?: number
-  tipo?: string
+  weight?: number
+  type?: string
 }
 
 export function getRumorForCurrentState() {
-  // Map actual state properties to Spanish variable names
-  const {
-    trust: confianza,
-    prestige: prestigio,
-    war: guerra,
-    currentTurn,
-  } = useGameState.getState()
+  const { trust, prestige, war, currentTurn } = useGameState.getState()
 
-  const candidatos = (rumors as unknown as Rumor[]).filter(rumor => {
-    const c = rumor.condiciones || {}
-    if (c.prestigio_min !== undefined && prestigio < c.prestigio_min) return false
-    if (c.prestigio_max !== undefined && prestigio > c.prestigio_max) return false
-    if (c.confianza_min !== undefined && confianza < c.confianza_min) return false
-    if (c.confianza_max !== undefined && confianza > c.confianza_max) return false
-    if (c.guerra !== undefined && guerra !== c.guerra) return false
-    if (c.turno_min !== undefined && currentTurn < c.turno_min) return false
-    if (c.turno_max !== undefined && currentTurn > c.turno_max) return false
+  const candidates = (rumors as unknown as Rumor[]).filter((rumor) => {
+    const c = rumor.conditions || {}
+    if (c.prestige_min !== undefined && prestige < c.prestige_min) return false
+    if (c.prestige_max !== undefined && prestige > c.prestige_max) return false
+    if (c.trust_min !== undefined && trust < c.trust_min) return false
+    if (c.trust_max !== undefined && trust > c.trust_max) return false
+    if (c.war !== undefined && war !== c.war) return false
+    if (c.turn_min !== undefined && currentTurn < c.turn_min) return false
+    if (c.turn_max !== undefined && currentTurn > c.turn_max) return false
     return true
   })
 
-  if (candidatos.length === 0) return null
+  if (candidates.length === 0) return null
 
-  const totalPeso = candidatos.reduce((acc, r) => acc + (r.peso || 1), 0)
-  const random = Math.random() * totalPeso
-  let acumulado = 0
-  for (const rumor of candidatos) {
-    acumulado += rumor.peso || 1
-    if (random <= acumulado) return rumor.texto
+  const totalWeight = candidates.reduce((acc, r) => acc + (r.weight || 1), 0)
+  const random = Math.random() * totalWeight
+  let accumulated = 0
+  for (const rumor of candidates) {
+    accumulated += rumor.weight || 1
+    if (random <= accumulated) return rumor.text
   }
 
-  return candidatos[0].texto
+  return candidates[0].text
 }
