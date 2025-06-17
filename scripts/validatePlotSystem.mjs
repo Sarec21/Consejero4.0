@@ -34,7 +34,7 @@ function validatePlot(plot) {
   for (const f of requiredBase) {
     if (!plot[f]) errors.push(`missing ${f}`);
   }
-  const requiredExtra = ['requiredEvents','optionalTwists','revealTiming','personajes_recomendados'];
+  const requiredExtra = ['requiredEvents','optionalTwists','revealTiming','recommended_characters'];
   for (const f of requiredExtra) {
     if (plot[f] === undefined) errors.push(`missing ${f}`);
   }
@@ -42,12 +42,12 @@ function validatePlot(plot) {
   if (missingEvents.length) errors.push(`unknown events: ${missingEvents.join(', ')}`);
   const missingTwists = (plot.optionalTwists || []).filter(tid => !twists.some(t => t.id === tid));
   if (missingTwists.length) errors.push(`unknown twists: ${missingTwists.join(', ')}`);
-  const rec = plot.personajes_recomendados;
+  const rec = plot.recommended_characters;
   if (rec) {
     const match = characters.some(ch =>
-      (rec.facciones && rec.facciones.includes(ch.faction)) ||
-      (rec.arquetipos && rec.arquetipos.includes(ch.archetype)) ||
-      (rec.etiquetas && (ch.tags || []).some(t => rec.etiquetas.includes(t)))
+      (rec.factions && rec.factions.includes(ch.faction)) ||
+      (rec.archetypes && rec.archetypes.includes(ch.archetype)) ||
+      (rec.tags && (ch.tags || []).some(t => rec.tags.includes(t)))
     );
     if (!match) errors.push('no recommended character matches');
   }

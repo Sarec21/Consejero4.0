@@ -66,14 +66,16 @@
     ],
     "metadata": {
       "compatibleKingdoms": [
-        "mountain_realm",
-        "fog_valley"
+        "desertic_empire_south",
+        "highland_vales_north"
       ],
       "relatedCharacters": [
-        "traitor_general",
-        "prophetic_child"
+        "traitor_noble_varim",
+        "warrior_veteran_05"
       ],
-      "visualStyle": "gritty bronze",
+      "visual": {
+        "tag_ia": "gritty bronze"
+      },
       "symbolIcon": "🛡️"
     },
     "requiredEvents": [
@@ -97,18 +99,6 @@
     "level": "village",
     "visual": {
       "tag_ia": "gloomy war banners flapping at contested border"
-    },
-    "personajes_recomendados": {
-      "facciones": [
-        "military",
-        "guards"
-      ],
-      "arquetipos": [
-        "veteran"
-      ],
-      "etiquetas": [
-        "loyalty"
-      ]
     },
     "recommended_characters": {
       "factions": [
@@ -172,20 +162,6 @@
     },
     "visual": {
       "tag_ia": "gloomy desert ambush under shifting dunes"
-    },
-    "personajes_recomendados": {
-      "facciones": [
-        "merchants",
-        "nobility"
-      ],
-      "arquetipos": [
-        "spy",
-        "traitor"
-      ],
-      "etiquetas": [
-        "ambition",
-        "occult"
-      ]
     }
   },
   {
@@ -239,23 +215,6 @@
     },
     "visual": {
       "tag_ia": "balanced loyalty ceremony under ancient stone"
-    },
-    "personajes_recomendados": {
-      "facciones": [
-        "clans",
-        "priests",
-        "guards"
-      ],
-      "arquetipos": [
-        "heir",
-        "mentor",
-        "old_loyalist"
-      ],
-      "etiquetas": [
-        "honor",
-        "tradition",
-        "oath"
-      ]
     }
   }
 ]
