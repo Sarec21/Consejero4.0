@@ -6,6 +6,7 @@ import { findMatchingKing } from '../../lib/kingSelector'
 import { findMatchingKingdom } from '../../lib/kingdomSelector'
 import type { Kingdom } from '../../types'
 import ViewPresentationScreen from '../view/ViewPresentationScreen'
+import Loader from '../../components/Loader'
 
 export default function PresentationScreen() {
   const {
@@ -20,9 +21,11 @@ export default function PresentationScreen() {
   const navigate = useNavigate()
   const [debugText, setDebugText] = useState('')
   const [selectedKingdom, setSelectedKingdom] = useState<Kingdom | null>(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const init = async () => {
+      setLoading(true)
       try {
         if (mainPlot) {
           const kingdomMatch = findMatchingKingdom(mainPlot)
@@ -64,6 +67,8 @@ export default function PresentationScreen() {
       } catch (error) {
         console.error('Error initializing plot', error)
         setDebugText((prev) => prev + `Error: ${(error as Error).message}\n`)
+      } finally {
+        setLoading(false)
       }
     }
     init()
@@ -73,7 +78,9 @@ export default function PresentationScreen() {
     navigate('/turn')
   }
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <ViewPresentationScreen
       kingName={kingName}
       kingdom={selectedKingdom ? selectedKingdom.name : kingdom}
