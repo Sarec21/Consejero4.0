@@ -3,11 +3,12 @@ import { useGameState } from '../../state/gameState'
 interface ViewPresentationScreenProps {
   kingName: string
   kingdom: string
+  kingdomDescription?: string
   onContinue: () => void
   debugText: string
 }
 
-export default function ViewPresentationScreen({ kingName, kingdom, onContinue, debugText }: ViewPresentationScreenProps) {
+export default function ViewPresentationScreen({ kingName, kingdom, kingdomDescription, onContinue, debugText }: ViewPresentationScreenProps) {
   const { currentKing, mainPlot } = useGameState()
   const name = currentKing?.name || kingName
   const epithet = currentKing?.epithet || ''
@@ -15,6 +16,7 @@ export default function ViewPresentationScreen({ kingName, kingdom, onContinue, 
   const phrase = currentKing?.king_phrase || 'Long live the king.'
   const throneDesc = currentKing?.throne_room_description || 'The throne room awaits.'
   const kingdomContext = currentKing?.kingdom_context || `The kingdom of ${kingdom}`
+  const kingdomDesc = kingdomDescription || ''
   const personality = currentKing?.personality || 'Unknown'
   const tone = currentKing?.general_tone || 'Neutral'
 
@@ -47,6 +49,7 @@ export default function ViewPresentationScreen({ kingName, kingdom, onContinue, 
         <div style={{ flex: 1, textAlign: 'left' }}>
           <p>{throneDesc}</p>
           <p>{kingdomContext}</p>
+          {kingdomDesc && <p>{kingdomDesc}</p>}
         </div>
 
         <div
