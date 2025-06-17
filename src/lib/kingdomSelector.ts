@@ -2,7 +2,7 @@ import kingdoms from '../data/kingdoms.json'
 import type { Plot } from '../state/gameState'
 import type { Kingdom } from '../types'
 
-export function findMatchingKingdom(plot: Plot, _level: string): Kingdom | null {
+export function findMatchingKingdom(plot: Plot): Kingdom | null {
   let bestMatch: Kingdom | null = null
   let maxScore = 0
 
