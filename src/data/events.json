@@ -204,8 +204,53 @@
       "min_turn": 1,
       "max_turn": 3
     },
-    "visual": {
+  "visual": {
       "tag_ia": "village elder rallying armed volunteers at dusk"
+  }
+ },
+  {
+    "id": "reinforce_border_post",
+    "level": "village",
+    "tags": ["war", "honor", "tension"],
+    "description": "Local militias demand better defenses to resist upcoming invasions.",
+    "visual": {
+      "tag_ia": "medieval village militia reinforcing wooden barricades at dusk"
+    }
+  },
+  {
+    "id": "spy_captured_trade_hub",
+    "level": "governor",
+    "tags": ["intrigue", "trade", "alliances"],
+    "description": "A foreign spy has been caught near a key trading post. Interrogation may reveal deeper plots.",
+    "visual": {
+      "tag_ia": "dark-robed spy surrounded by guards in a candle-lit trading outpost"
+    }
+  },
+  {
+    "id": "minor_tax_revolt",
+    "level": "royal_court",
+    "tags": ["balance", "law", "recovery"],
+    "description": "A province refuses to pay the reformed taxes, citing unjust burden on artisans.",
+    "visual": {
+      "tag_ia": "angry artisans burning tax scrolls in a cobblestone market square"
+    }
+  },
+  {
+    "id": "hidden_military_supplies",
+    "level": "village",
+    "tags": ["war", "tension"],
+    "description": "A hidden cache of old weapons is discovered in a barn near the border.",
+    "visual": {
+      "tag_ia": "rusty medieval weapons hidden under straw in a dimly-lit barn"
+    }
+  },
+  {
+    "id": "corrupt_judge_exposed",
+    "level": "royal_court",
+    "tags": ["law", "recovery"],
+    "description": "One of the high judges has been secretly colluding with wealthy nobles to twist the law.",
+    "visual": {
+      "tag_ia": "aristocratic courtroom with a shocked crowd and a judge under accusation"
     }
   }
 ]
