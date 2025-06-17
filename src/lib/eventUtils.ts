@@ -16,6 +16,7 @@ export interface Event {
     war?: boolean
     max_war?: boolean
   }
+  visual: { tag_ia: string }
 }
 
 // Cast to any to avoid schema mismatches with legacy data

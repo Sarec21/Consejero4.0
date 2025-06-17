@@ -8,8 +8,14 @@
     "general_tone": "solemn and balanced",
     "kingdom_context": "The kingdom is recovering from a long civil war and stability is fragile.",
     "throne_room_description": "The royal hall is austere, flanked by cold stone columns and a high vaulted ceiling.",
-    "tags": ["law", "balance", "recovery"],
-    "visual": "king_throne_dark01"
+    "tags": [
+      "law",
+      "balance",
+      "recovery"
+    ],
+    "visual": {
+      "tag_ia": "king_throne_dark01"
+    }
   },
   {
     "id": "king_lauren_cunning",
@@ -20,8 +26,14 @@
     "general_tone": "scheming and mischievous",
     "kingdom_context": "The realm thrives on trade and hidden alliances.",
     "throne_room_description": "Bright banners cover the walls, but whispers fill the court.",
-    "tags": ["trade", "alliances", "intrigue"],
-    "visual": "king_throne_light02"
+    "tags": [
+      "trade",
+      "alliances",
+      "intrigue"
+    ],
+    "visual": {
+      "tag_ia": "king_throne_light02"
+    }
   },
   {
     "id": "king_thorne_warborn",
@@ -32,10 +44,15 @@
     "general_tone": "intense and defiant",
     "kingdom_context": "The kingdom stands on the brink of war, its armies restless and its borders contested.",
     "throne_room_description": "The chamber is lined with war banners and the clink of armor echoes from every corner.",
-    "tags": ["war", "honor", "tension"],
-    "visual": "king_throne_red03"
-  }
-,
+    "tags": [
+      "war",
+      "honor",
+      "tension"
+    ],
+    "visual": {
+      "tag_ia": "king_throne_red03"
+    }
+  },
   {
     "id": "king_feron_just",
     "name": "Feron",
@@ -45,8 +62,14 @@
     "general_tone": "solemn",
     "kingdom_context": "The Kingdom has recently emerged from war and is still seeking stability.",
     "throne_room_description": "A hall of white marble and tall pillars. Light streams through golden stained glass windows.",
-    "tags": ["honor", "reconstruction", "balance"],
-    "visual": "mature_king_white_cloak_golden_light"
+    "tags": [
+      "honor",
+      "reconstruction",
+      "balance"
+    ],
+    "visual": {
+      "tag_ia": "mature_king_white_cloak_golden_light"
+    }
   },
   {
     "id": "king_almeric_peacemaker",
@@ -57,8 +80,14 @@
     "general_tone": "hopeful",
     "kingdom_context": "After years of internal strife, the Kingdom is on the verge of a new era.",
     "throne_room_description": "A circular room with tapestries of ancient treaties. Candles flicker beside scrolls and maps.",
-    "tags": ["reconstruction", "balance", "diplomacy"],
-    "visual": "wise_king_scrolls_peaceful_aura"
+    "tags": [
+      "reconstruction",
+      "balance",
+      "diplomacy"
+    ],
+    "visual": {
+      "tag_ia": "wise_king_scrolls_peaceful_aura"
+    }
   },
   {
     "id": "king_therald_quietvoice",
@@ -69,7 +98,13 @@
     "general_tone": "reflective",
     "kingdom_context": "Therald rules a kingdom tired of proclamations. His patience is his weapon.",
     "throne_room_description": "A simple stone room, where silence holds weight. Few decorations, many listeners.",
-    "tags": ["balance", "reform", "stability"],
-    "visual": "silent_king_stone_room_dim_light"
+    "tags": [
+      "balance",
+      "reform",
+      "stability"
+    ],
+    "visual": {
+      "tag_ia": "silent_king_stone_room_dim_light"
+    }
   }
 ]

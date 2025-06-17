@@ -8,7 +8,7 @@ export interface King {
   kingdom_context: string
   throne_room_description: string
   tags: string[]
-  visual?: string
+  visual?: { tag_ia: string }
 }
 
 export interface Character {
@@ -55,25 +55,14 @@ export interface Event {
     war?: boolean
     max_war?: boolean
   }
+  visual: { tag_ia: string }
 }
 
 export interface Kingdom {
   id: string
   name: string
-  motto: string
-  description: string
-  visual_style: {
-    palette: string
-    architecture: string
-    landmarks: string[]
-  }
-  narrative_tags: string[]
-  levels_available: string[]
-  default_weather?: string
-  season_cycle?: string[]
-  symbolic_elements?: string[]
-  visual_prompt_tag: string
-  recommended_plot_tags?: string[]
-  recommended_kings?: string[]
+  traits: string[]
+  visual: { tag_ia: string }
+  description?: string
 }
 
