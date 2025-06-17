@@ -6,7 +6,9 @@
     "tags": ["ritual", "mourning"],
     "level": "royal_court",
     "tone": "dark",
-    "visual": "chapel_candles_ashes",
+    "visual": {
+      "tag_ia": "chapel_candles_ashes"
+    },
     "linked_plot_tags": ["legacy", "loss"],
     "conditions": {
       "prestige_below": 40,
@@ -20,7 +22,9 @@
     "tags": ["rumor", "tension"],
     "level": "village",
     "tone": "neutral",
-    "visual": "marketplace_shadows_listeners",
+    "visual": {
+      "tag_ia": "marketplace_shadows_listeners"
+    },
     "linked_plot_tags": ["intrigue", "deception"],
     "conditions": {
       "trust_below": 60

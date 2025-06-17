@@ -6,7 +6,9 @@
     "title": "Echoes of the War",
     "summary": "Even after peace was declared, some wounds refuse to heal.",
     "mood": "uncertain",
-    "visual": "village_ruins_calm_mist",
+    "visual": {
+      "tag_ia": "village_ruins_calm_mist"
+    },
     "tags": ["reconstruction", "recovery"],
     "forcedAdvanceAfter": 2
   },
@@ -17,7 +19,9 @@
     "title": "The Tax Revolt",
     "summary": "A noble-led rebellion erupts in response to sweeping reforms.",
     "mood": "tense",
-    "visual": "angry_nobles_castle_courtyard",
+    "visual": {
+      "tag_ia": "angry_nobles_castle_courtyard"
+    },
     "tags": ["resistance", "law"],
     "forcedAdvanceAfter": 3
   }

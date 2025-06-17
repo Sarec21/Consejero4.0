@@ -96,7 +96,7 @@
     ],
     "level": "village",
     "visual": {
-      "tag_ia": "plot illustration for plot_border_flames"
+      "tag_ia": "gloomy war banners flapping at contested border"
     },
     "personajes_recomendados": {
       "facciones": [
@@ -171,7 +171,7 @@
       ]
     },
     "visual": {
-      "tag_ia": "plot illustration for betrayal_in_the_dunes"
+      "tag_ia": "gloomy desert ambush under shifting dunes"
     },
     "personajes_recomendados": {
       "facciones": [
@@ -238,7 +238,7 @@
       ]
     },
     "visual": {
-      "tag_ia": "plot illustration for the_forgotten_oath"
+      "tag_ia": "balanced loyalty ceremony under ancient stone"
     },
     "personajes_recomendados": {
       "facciones": [
