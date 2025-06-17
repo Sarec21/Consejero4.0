@@ -1,21 +1,23 @@
-import type { Event } from '../../lib/eventSelector'
-import EventCard from '../../components/EventCard'
-
 interface ViewReactionScreenProps {
   kingName: string
   playerAdvice: string
   kingReaction: string
-  activeEvent?: Event
-  onEnd: () => void
+  onContinue: () => void
 }
 
-export default function ViewReactionScreen({ kingName, playerAdvice, kingReaction, activeEvent, onEnd }: ViewReactionScreenProps) {
+export default function ViewReactionScreen({
+  kingName,
+  playerAdvice,
+  kingReaction,
+  onContinue,
+}: ViewReactionScreenProps) {
   return (
     <div>
-      <p>Your advice to King {kingName}: {playerAdvice}</p>
+      <p>
+        Your advice to King {kingName}: {playerAdvice}
+      </p>
       <p>{kingReaction}</p>
-      {activeEvent && <EventCard event={activeEvent} />}
-      <button onClick={onEnd}>End Game</button>
+      <button onClick={onContinue}>Continue to next turn</button>
     </div>
   )
 }

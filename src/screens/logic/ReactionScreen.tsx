@@ -1,18 +1,20 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameState } from '../../state/gameState'
 import ViewReactionScreen from '../view/ViewReactionScreen'
 
 export default function ReactionScreen() {
-  const { kingName, playerAdvice, kingReaction, activeEvents, setKingReaction } = useGameState()
+  const {
+    kingName,
+    playerAdvice,
+    kingReaction,
+    currentTurn,
+    setCurrentTurn,
+  } = useGameState()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setKingReaction('The King nods solemnly, but his gaze is stern.')
-  }, [setKingReaction])
-
-  const handleEnd = () => {
-    navigate('/final')
+  const handleContinue = () => {
+    setCurrentTurn(currentTurn + 1)
+    navigate('/turn')
   }
 
   return (
@@ -20,8 +22,7 @@ export default function ReactionScreen() {
       kingName={kingName}
       playerAdvice={playerAdvice}
       kingReaction={kingReaction}
-      activeEvent={activeEvents[0]}
-      onEnd={handleEnd}
+      onContinue={handleContinue}
     />
   )
 }
