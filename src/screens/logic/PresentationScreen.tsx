@@ -24,45 +24,27 @@ export default function PresentationScreen() {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (mainPlot) return
+
     const init = async () => {
       setLoading(true)
       try {
-        if (mainPlot) {
-          const kingdomMatch = findMatchingKingdom(mainPlot)
+        const plot = await generateInitialPlot()
+        if (plot) {
+          setMainPlot(plot)
+          const kingdomMatch = findMatchingKingdom(plot)
           if (kingdomMatch) {
             setSelectedKingdom(kingdomMatch)
             setKingdom(kingdomMatch.name)
           }
-          const king = findMatchingKing(mainPlot)
-          console.log('Using existing plot:', mainPlot)
-          console.log('Selected king:', king)
+          const king = findMatchingKing(plot)
           if (king) {
             setCurrentKing(king)
             setKingName(`${king.name} ${king.epithet}`)
           }
-          if (!kingdomMatch) setKingdom(mainPlot.tags[0] || 'Eldoria')
+          if (!kingdomMatch) setKingdom(plot.tags[0] || 'Eldoria')
         } else {
-          setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
-          const plot = await generateInitialPlot()
-          setDebugText((prev) => prev + `Raw result:\n${JSON.stringify(plot, null, 2)}\n`)
-          console.log('Generated plot:', plot)
-          if (plot) {
-            setMainPlot(plot)
-            const kingdomMatch = findMatchingKingdom(plot)
-            if (kingdomMatch) {
-              setSelectedKingdom(kingdomMatch)
-              setKingdom(kingdomMatch.name)
-            }
-            const king = findMatchingKing(plot)
-            console.log('Selected king:', king)
-            if (king) {
-              setCurrentKing(king)
-              setKingName(`${king.name} ${king.epithet}`)
-            }
-            if (!kingdomMatch) setKingdom(plot.tags[0] || 'Eldoria')
-          } else {
-            setDebugText((prev) => prev + 'Fallback: plot was null\n')
-          }
+          setDebugText((prev) => prev + 'Fallback: plot was null\n')
         }
       } catch (error) {
         console.error('Error initializing plot', error)
@@ -71,8 +53,9 @@ export default function PresentationScreen() {
         setLoading(false)
       }
     }
+    setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
     init()
-  }, [mainPlot, setKingName, setKingdom, setMainPlot, setCurrentKing])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleContinue = () => {
     navigate('/turn')
