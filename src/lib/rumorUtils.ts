@@ -3,39 +3,35 @@ import { useGameState } from '../state/gameState'
 
 export interface Rumor {
   id: string
-  texto: string
-  condiciones?: {
-    prestigio_min?: number
-    prestigio_max?: number
-    confianza_min?: number
-    confianza_max?: number
-    guerra?: boolean
+  text: string
+  conditions?: {
+    prestige_min?: number
+    prestige_max?: number
+    trust_min?: number
+    trust_max?: number
+    war?: boolean
   }
-  peso?: number
-  tipo?: string
+  weight?: number
+  type?: string
 }
 
 const rumors = rumorsData as unknown as Rumor[]
 
 export function getRumorTextById(id: string): string {
-  const found = rumors.find(r => r.id === id)
-  return found?.texto || '[Missing rumor text]'
+  const found = rumors.find((r) => r.id === id)
+  return found?.text || '[Missing rumor text]'
 }
 
 export function getValidRumors(): Rumor[] {
-  const {
-    prestige: prestigio,
-    trust: confianza,
-    war: guerra,
-  } = useGameState.getState()
-  return rumors.filter(rumor => {
-    const c = rumor.condiciones
+  const { prestige, trust, war } = useGameState.getState()
+  return rumors.filter((rumor) => {
+    const c = rumor.conditions
     if (!c) return true
-    if (c.prestigio_min !== undefined && prestigio < c.prestigio_min) return false
-    if (c.prestigio_max !== undefined && prestigio > c.prestigio_max) return false
-    if (c.confianza_min !== undefined && confianza < c.confianza_min) return false
-    if (c.confianza_max !== undefined && confianza > c.confianza_max) return false
-    if (c.guerra !== undefined && guerra !== c.guerra) return false
+    if (c.prestige_min !== undefined && prestige < c.prestige_min) return false
+    if (c.prestige_max !== undefined && prestige > c.prestige_max) return false
+    if (c.trust_min !== undefined && trust < c.trust_min) return false
+    if (c.trust_max !== undefined && trust > c.trust_max) return false
+    if (c.war !== undefined && war !== c.war) return false
     return true
   })
 }
@@ -44,5 +40,5 @@ export function pickRandomRumor(): string {
   const validRumors = getValidRumors()
   if (validRumors.length === 0) return 'The realm is silent...'
   const randomIndex = Math.floor(Math.random() * validRumors.length)
-  return validRumors[randomIndex].texto
+  return validRumors[randomIndex].text
 }
