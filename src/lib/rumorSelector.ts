@@ -8,6 +8,11 @@ type Rumor = {
   kingdom_tags?: string[]
   level?: string[]
   intensity?: 'low' | 'medium' | 'high'
+  conditions?: {
+    prestigeAbove?: number
+    trustBelow?: number
+    war?: boolean
+  }
 }
 
 export function getMatchingRumors(
@@ -49,4 +54,31 @@ export function selectRumor(state: GameState): string | null {
 
   const chosen = weighted[Math.floor(Math.random() * weighted.length)]
   return chosen.text
+}
+
+export function pickRandomRumor(state: GameState): string | null {
+  const { level, currentEmotion = [], mainPlot, prestige, trust, war } = state
+
+  const candidates = (rumors as unknown as Rumor[]).filter((rumor) => {
+    const matchesEmotion = rumor.emotion_tags
+      ? rumor.emotion_tags.some((e) => currentEmotion.includes(e))
+      : true
+    const matchesTags = rumor.kingdom_tags
+      ? rumor.kingdom_tags.some((tag) => (mainPlot?.tags || []).includes(tag))
+      : true
+    const matchesLevel = rumor.level ? rumor.level.includes(level) : true
+    const cond = rumor.conditions
+    const matchesCond = cond
+      ? !(
+          (cond.prestigeAbove !== undefined && prestige <= cond.prestigeAbove) ||
+          (cond.trustBelow !== undefined && trust >= cond.trustBelow) ||
+          (cond.war !== undefined && war !== cond.war)
+        )
+      : true
+    return matchesEmotion && matchesTags && matchesLevel && matchesCond
+  })
+
+  if (candidates.length === 0) return null
+  const randomIndex = Math.floor(Math.random() * candidates.length)
+  return candidates[randomIndex].text
 }
