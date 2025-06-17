@@ -94,5 +94,57 @@
       "honor",
       "tension"
     ]
+  },
+  {
+    "id": "betrayal_in_the_dunes",
+    "inspirationalPhrase": "In the silence of the sand, loyalty is just another mirage.",
+    "tone": "dark",
+    "difficulty": "medium",
+    "level": "royal_court",
+    "startingState": {
+      "prestige": 45,
+      "resources": 60,
+      "conflict": 70,
+      "trust": 50
+    },
+    "requiredEvents": ["secret_trial", "death_of_envoy"],
+    "optionalTwists": ["sandstorm_uprising", "betrayed_by_confidant"],
+    "revealTiming": {
+      "hint": 2,
+      "conflict": 4,
+      "climax": 6
+    },
+    "tags": ["desert", "betrayal", "legacy", "ruin", "secrecy"],
+    "recommended_characters": {
+      "facciones": ["nobleza", "guardia", "mercaderes"],
+      "arquetipos": ["traidor", "conspirador", "espía"],
+      "etiquetas": ["ambicion", "frialdad", "ocultismo"]
+    }
+  },
+  {
+    "id": "the_forgotten_oath",
+    "inspirationalPhrase": "A blood oath once sworn echoes louder than a thousand swords.",
+    "tone": "neutral",
+    "difficulty": "hard",
+    "level": "mythical_kingdom",
+    "startingState": {
+      "prestige": 60,
+      "resources": 50,
+      "conflict": 80,
+      "trust": 30
+    },
+    "requiredEvents": ["oath_revealed", "attack_on_watchtower"],
+    "optionalTwists": ["heir_disappears", "storm_delays"],
+    "revealTiming": {
+      "hint": 3,
+      "conflict": 5,
+      "climax": 7
+    },
+    "tags": ["loyalty", "sacrifice", "honor", "conflict", "legacy"],
+    "recommended_characters": {
+      "facciones": ["clanes", "sacerdotes", "guardia"],
+      "arquetipos": ["heredero", "mentor", "viejo_leal"],
+      "etiquetas": ["honor", "tradición", "juramento"]
+    }
   }
 ]
