@@ -6,6 +6,9 @@ import { getAvailableEvents, type Event } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
 import { getRumorForCurrentState } from '../../lib/rumorSelector'
 import { getAvailableCharacters, type CharacterEntry } from '../../lib/characterUtils'
+import Loader from '../../components/Loader'
+import { callAssistant as rawCall } from '../../lib/openai'
+import { getPromptTemplate } from '../../lib/openai/promptTemplates'
 
 export default function TurnScreen() {
   const gameState = useGameState()
@@ -37,6 +40,7 @@ export default function TurnScreen() {
   const [advice, setAdvice] = useState('')
   const [availableChars, setAvailableChars] = useState<CharacterEntry[]>([])
   const [currentEvent, setCurrentEvent] = useState<Event | null>(null)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -53,17 +57,40 @@ export default function TurnScreen() {
     }
   }, [mainPlot, currentTurn])
 
-  const handleSend = () => {
+  const handleSend = async () => {
+    setLoading(true)
     setPlayerAdvice(advice)
-    setKingReaction('The King nods at your words and ponders.')
-    setTrust(trust + 5)
-    if (mainPlot) {
-      checkAndTriggerMutations(currentTurn, mainPlot, useGameState.getState())
+    try {
+      const template = getPromptTemplate('reaction_to_advice')
+      if (template) {
+        const variables = {
+          kingPersonality: currentKing?.personality,
+          playerAdvice: advice,
+          plotTags: mainPlot?.tags,
+          trust,
+        }
+        const prompt = `${template.instructions}\n\n${JSON.stringify(variables)}`
+        const reaction = await rawCall('asst_xBvJOGRlyLWAJlQeWWTLFw8q', prompt)
+        setKingReaction(reaction || 'The King nods at your words and ponders.')
+      } else {
+        setKingReaction('The King nods at your words and ponders.')
+      }
+    } catch (error) {
+      console.error('Failed to get reaction', error)
+      setKingReaction('The King nods at your words and ponders.')
+    } finally {
+      setTrust(trust + 5)
+      if (mainPlot) {
+        checkAndTriggerMutations(currentTurn, mainPlot, useGameState.getState())
+      }
+      setLoading(false)
+      navigate('/reaction')
     }
-    navigate('/reaction')
   }
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <ViewTurnScreen
       rumor={currentRumorText}
       event={currentEvent}
