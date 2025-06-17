@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameState } from '../../state/gameState'
 import { generateInitialPlot, initialPlotPrompt } from '../../lib/narrative'
@@ -7,6 +7,9 @@ import { findMatchingKingdom } from '../../lib/kingdomSelector'
 import type { Kingdom } from '../../types'
 import ViewPresentationScreen from '../view/ViewPresentationScreen'
 import Loader from '../../components/Loader'
+
+// Persist initialization status across StrictMode remounts
+let plotInitialized = false
 
 export default function PresentationScreen() {
   const {
@@ -22,11 +25,10 @@ export default function PresentationScreen() {
   const [debugText, setDebugText] = useState('')
   const [selectedKingdom, setSelectedKingdom] = useState<Kingdom | null>(null)
   const [loading, setLoading] = useState(false)
-  const hasInitialized = useRef(false)
 
   useEffect(() => {
-    if (hasInitialized.current || mainPlot) return
-    hasInitialized.current = true
+    if (plotInitialized || mainPlot) return
+    plotInitialized = true
 
     const init = async () => {
       setLoading(true)
