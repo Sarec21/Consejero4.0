@@ -144,5 +144,68 @@
     "visual": {
       "tag_ia": "burning watchtower on snowy cliff"
     }
+  },
+  {
+    "id": "border_fire_start",
+    "title": "Fires on the Border",
+    "description": "Scouts report enemy fires burning just beyond the treeline. Villagers fear a surprise attack at dawn.",
+    "level": "village",
+    "tags": [
+      "war",
+      "tension"
+    ],
+    "activation_conditions": {
+      "plot_tags": [
+        "war",
+        "tension"
+      ],
+      "min_turn": 1,
+      "max_turn": 2
+    },
+    "visual": {
+      "tag_ia": "distant campfires glowing near dark forest border"
+    }
+  },
+  {
+    "id": "clash_of_pride",
+    "title": "Clash of Pride",
+    "description": "Two rival militia leaders argue over who should lead the defense. Their shouting draws a nervous crowd.",
+    "level": "village",
+    "tags": [
+      "honor",
+      "tension"
+    ],
+    "activation_conditions": {
+      "plot_tags": [
+        "honor",
+        "tension"
+      ],
+      "min_turn": 1,
+      "max_turn": 2
+    },
+    "visual": {
+      "tag_ia": "two armored men arguing in lamplit village square"
+    }
+  },
+  {
+    "id": "call_for_champions",
+    "title": "Call for Champions",
+    "description": "Elders urge the bravest to volunteer for a risky border raid, promising honor and spoils.",
+    "level": "village",
+    "tags": [
+      "war",
+      "honor"
+    ],
+    "activation_conditions": {
+      "plot_tags": [
+        "war",
+        "honor"
+      ],
+      "min_turn": 1,
+      "max_turn": 3
+    },
+    "visual": {
+      "tag_ia": "village elder rallying armed volunteers at dusk"
+    }
   }
 ]
