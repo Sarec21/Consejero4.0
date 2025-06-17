@@ -3,7 +3,6 @@ import type { Event } from '../../lib/eventSelector'
 interface ViewTurnScreenProps {
   rumor?: string | null
   event?: Event | null
-  dilemma?: string | null
   visualTag?: string | null
   advice: string
   onAdviceChange: (value: string) => void
@@ -16,20 +15,17 @@ interface ViewTurnScreenProps {
     tags: string[]
     visual?: { tag_ia: string }
   }[]
-  error?: string
 }
 
 export default function ViewTurnScreen({
   rumor,
   event,
-  dilemma,
   visualTag,
   advice,
   onAdviceChange,
   onSend,
   debugInfo,
   debugCharacters,
-  error,
 }: ViewTurnScreenProps) {
   return (
     <div>
@@ -43,14 +39,6 @@ export default function ViewTurnScreen({
           <h3>{event.title}</h3>
           <p>{event.description}</p>
         </div>
-      )}
-      {dilemma && (
-        <div style={{ marginBottom: '0.5rem' }}>
-          <p>{dilemma}</p>
-        </div>
-      )}
-      {error && (
-        <p style={{ color: 'red' }}>{error}</p>
       )}
       {visualTag && <div style={{ opacity: 0.7 }}>Image tag: {visualTag}</div>}
       <textarea

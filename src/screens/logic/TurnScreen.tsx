@@ -5,14 +5,10 @@ import { checkAndTriggerMutations } from '../../lib/mutationLogic'
 import { getAvailableEvents, type Event } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
 import { getRumorForCurrentState } from '../../lib/rumorSelector'
-import {
-  getAvailableCharacters,
-  type CharacterEntry,
-} from '../../lib/characterUtils'
+import { getAvailableCharacters, type CharacterEntry } from '../../lib/characterUtils'
 import Loader from '../../components/Loader'
 import { callAssistant as rawCall } from '../../lib/openai'
 import { getPromptTemplate } from '../../lib/openai/promptTemplates'
-import { runPromptWithValidation } from '../../lib/openai/promptExecutor'
 
 export default function TurnScreen() {
   const gameState = useGameState()
@@ -20,7 +16,6 @@ export default function TurnScreen() {
     setPlayerAdvice,
     setKingReaction,
     setTrust,
-    setActiveEvents,
     mainPlot,
     currentTurn,
     trust,
@@ -31,56 +26,35 @@ export default function TurnScreen() {
     currentKing,
   } = gameState
 
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    const rumor = getRumorForCurrentState()
+    if (rumor && !rumorsQueue.includes(rumor)) {
+      addRumors([rumor])
+    }
+  }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   const currentRumorText =
     rumorsQueue.length > 0 ? rumorsQueue[rumorsQueue.length - 1] : null
   const [advice, setAdvice] = useState('')
   const [availableChars, setAvailableChars] = useState<CharacterEntry[]>([])
-  const [currentEventLocal, setCurrentEventLocal] = useState<Event | null>(null)
-  const [dilemma, setDilemma] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const [currentEvent, setCurrentEvent] = useState<Event | null>(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!mainPlot) {
-      navigate('/presentation')
-      return
+    if (mainPlot) {
+      const chars = getAvailableCharacters(mainPlot, currentEmotion, level)
+      setAvailableChars(chars)
     }
+  }, [mainPlot, currentEmotion, level])
 
-    const init = async () => {
-      setLoading(true)
-      try {
-        checkAndTriggerMutations(
-          currentTurn,
-          mainPlot,
-          useGameState.getState(),
-        )
-
-        const rumor = getRumorForCurrentState()
-        if (rumor && !rumorsQueue.includes(rumor)) {
-          addRumors([rumor])
-        }
-
-        const chars = getAvailableCharacters(mainPlot, currentEmotion, level)
-        setAvailableChars(chars)
-
-        const events = getAvailableEvents(mainPlot, currentTurn)
-        setActiveEvents(events)
-        const first = events.length > 0 ? events[0] : null
-        setCurrentEventLocal(first)
-
-        const turnText = await runPromptWithValidation('turn')
-        setDilemma(turnText)
-      } catch (err) {
-        console.error('Error preparing turn', err)
-        setError('Failed to generate dilemma')
-      } finally {
-        setLoading(false)
-      }
+  useEffect(() => {
+    if (mainPlot) {
+      const events = getAvailableEvents(mainPlot, currentTurn)
+      setCurrentEvent(events.length > 0 ? events[0] : null)
     }
-    init()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainPlot, currentTurn])
 
   const handleSend = async () => {
@@ -106,6 +80,9 @@ export default function TurnScreen() {
       setKingReaction('The King nods at your words and ponders.')
     } finally {
       setTrust(trust + 5)
+      if (mainPlot) {
+        checkAndTriggerMutations(currentTurn, mainPlot, useGameState.getState())
+      }
       setLoading(false)
       navigate('/reaction')
     }
@@ -116,11 +93,8 @@ export default function TurnScreen() {
   ) : (
     <ViewTurnScreen
       rumor={currentRumorText}
-      event={currentEventLocal}
-      dilemma={dilemma}
-      visualTag={
-        currentEventLocal?.visual?.tag_ia || currentKing?.visual?.tag_ia || null
-      }
+      event={currentEvent}
+      visualTag={currentEvent?.visual?.tag_ia || currentKing?.visual?.tag_ia || null}
       advice={advice}
       onAdviceChange={setAdvice}
       onSend={handleSend}
@@ -130,7 +104,6 @@ export default function TurnScreen() {
           : undefined
       }
       debugCharacters={import.meta.env.DEV ? availableChars : undefined}
-      error={error || undefined}
     />
   )
 }
