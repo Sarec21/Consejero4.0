@@ -34,5 +34,23 @@
       "max_turn": 5
     },
     "visual": "caravan_guarded_by_soldiers"
+  },
+  {
+    "id": "event_smuggler_ambush",
+    "title": "Smuggler Ambush in the Dunes",
+    "description": "A convoy was attacked under suspicious circumstances. Some say the guards opened the gates themselves.",
+    "impactTags": ["betrayal", "secrecy", "desert"],
+    "visual": {
+      "tag_ia": "desert ambush with broken wagons and masked figures"
+    }
+  },
+  {
+    "id": "event_old_oath_revealed",
+    "title": "The Forgotten Oath Resurfaces",
+    "description": "Ancient writings found in a ruined monastery mention a blood pact tied to the northern clans.",
+    "impactTags": ["legacy", "mystery", "loyalty"],
+    "visual": {
+      "tag_ia": "ancient scroll glowing in snowy ruins"
+    }
   }
 ]
