@@ -40,8 +40,6 @@ export default function PresentationScreen() {
             setKingdom(kingdomMatch.name)
           }
           const king = findMatchingKing(mainPlot)
-          console.log('Using existing plot:', mainPlot)
-          console.log('Selected king:', king)
           if (king) {
             setCurrentKing(king)
             setKingName(`${king.name} ${king.epithet}`)
@@ -51,7 +49,6 @@ export default function PresentationScreen() {
           setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
           const plot = await generateInitialPlot()
           setDebugText((prev) => prev + `Raw result:\n${JSON.stringify(plot, null, 2)}\n`)
-          console.log('Generated plot:', plot)
           if (plot) {
             setMainPlot(plot)
             const kingdomMatch = findMatchingKingdom(plot)
@@ -60,7 +57,6 @@ export default function PresentationScreen() {
               setKingdom(kingdomMatch.name)
             }
             const king = findMatchingKing(plot)
-            console.log('Selected king:', king)
             if (king) {
               setCurrentKing(king)
               setKingName(`${king.name} ${king.epithet}`)
