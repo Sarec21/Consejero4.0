@@ -1,0 +1,86 @@
+import fs from 'fs';
+import path from 'path';
+
+function readJSON(p) {
+  return JSON.parse(fs.readFileSync(path.join(process.cwd(), p), 'utf8'));
+}
+
+const plots = readJSON('src/data/plots.json');
+const events = readJSON('src/data/events.json');
+const twists = readJSON('src/data/twists.json');
+const characters = readJSON('src/data/characters.json');
+const kings = readJSON('src/data/kings.json');
+
+function findMatchingKing(plot) {
+  let bestMatch = null;
+  let maxMatches = 0;
+  for (const king of kings) {
+    const matches = (king.tags || []).filter(tag => (plot.tags || []).includes(tag)).length;
+    if (matches > maxMatches) {
+      bestMatch = king;
+      maxMatches = matches;
+    }
+  }
+  return maxMatches > 0 ? bestMatch : null;
+}
+
+function hasTagIA(obj) {
+  return obj && obj.visual && obj.visual.tag_ia && obj.visual.tag_ia.trim() !== '';
+}
+
+function validatePlot(plot) {
+  const errors = [];
+  const requiredBase = ['id','inspirationalPhrase','tone','difficulty','level','tags','startingState'];
+  for (const f of requiredBase) {
+    if (!plot[f]) errors.push(`missing ${f}`);
+  }
+  const requiredExtra = ['requiredEvents','optionalTwists','revealTiming','personajes_recomendados'];
+  for (const f of requiredExtra) {
+    if (plot[f] === undefined) errors.push(`missing ${f}`);
+  }
+  const missingEvents = (plot.requiredEvents || []).filter(eid => !events.some(e => e.id === eid));
+  if (missingEvents.length) errors.push(`unknown events: ${missingEvents.join(', ')}`);
+  const missingTwists = (plot.optionalTwists || []).filter(tid => !twists.some(t => t.id === tid));
+  if (missingTwists.length) errors.push(`unknown twists: ${missingTwists.join(', ')}`);
+  const rec = plot.personajes_recomendados;
+  if (rec) {
+    const match = characters.some(ch =>
+      (rec.facciones && rec.facciones.includes(ch.faction)) ||
+      (rec.arquetipos && rec.arquetipos.includes(ch.archetype)) ||
+      (rec.etiquetas && (ch.tags || []).some(t => rec.etiquetas.includes(t)))
+    );
+    if (!match) errors.push('no recommended character matches');
+  }
+  const kingOverlap = kings.some(k => (k.tags || []).some(t => (plot.tags || []).includes(t)));
+  if (!kingOverlap) errors.push('no king shares plot tags');
+  const kmatch = findMatchingKing(plot);
+  if (!kmatch) errors.push('findMatchingKing returned null');
+  if (!hasTagIA(plot)) errors.push('visual.tag_ia missing');
+  return errors;
+}
+
+const results = [];
+for (const plot of plots) {
+  const errors = validatePlot(plot);
+  results.push({id: plot.id, errors});
+}
+
+function validateCollection(name, arr) {
+  return arr.every(item => hasTagIA(item));
+}
+
+const eventsValid = validateCollection('events', events);
+const twistsValid = validateCollection('twists', twists);
+const charsValid = validateCollection('characters', characters);
+const kingsValid = validateCollection('kings', kings);
+
+for (const res of results) {
+  const status = res.errors.length ? '❌' : '✅';
+  console.log(`${status} ${res.id}`);
+  if (res.errors.length) console.log('  ' + res.errors.join('; '));
+}
+console.log('\nOther Checks:');
+console.log(`Events visuals: ${eventsValid ? 'OK' : 'Missing tag_ia'}`);
+console.log(`Twists visuals: ${twistsValid ? 'OK' : 'Missing tag_ia'}`);
+console.log(`Characters visuals: ${charsValid ? 'OK' : 'Missing tag_ia'}`);
+console.log(`Kings visuals: ${kingsValid ? 'OK' : 'Missing tag_ia'}`);
