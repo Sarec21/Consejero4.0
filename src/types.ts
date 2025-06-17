@@ -19,8 +19,8 @@ export interface Character {
   type: 'visible' | 'hidden'
   appearance_conditions: {
     plot_tags: string[]
-    current_emotion: string[]
-    advisor_levels: string[]
+    current_emotion?: string[]
+    advisor_level: string[]
   }
   active_in_levels: (
     | 'village'
