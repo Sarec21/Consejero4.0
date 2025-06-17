@@ -10,12 +10,12 @@ const rumors = readJSON('src/data/rumors.json');
 function validateRumor(rumor) {
   const errors = [];
   if (typeof rumor.id !== 'string') errors.push('id missing or not string');
-  if (typeof rumor.texto !== 'string') errors.push('texto missing or not string');
-  if (typeof rumor.peso !== 'number' || rumor.peso < 1) errors.push('peso missing or < 1');
-  if (!['crisis', 'prosperidad', 'neutro'].includes(rumor.tipo)) errors.push('tipo invalid');
-  if (rumor.condiciones !== undefined) {
-    if (typeof rumor.condiciones !== 'object' || Array.isArray(rumor.condiciones) || rumor.condiciones === null) {
-      errors.push('condiciones should be object');
+  if (typeof rumor.text !== 'string') errors.push('text missing or not string');
+  if (typeof rumor.weight !== 'number' || rumor.weight < 1) errors.push('weight missing or < 1');
+  if (!['crisis', 'prosperity', 'neutral'].includes(rumor.type)) errors.push('type invalid');
+  if (rumor.conditions !== undefined) {
+    if (typeof rumor.conditions !== 'object' || Array.isArray(rumor.conditions) || rumor.conditions === null) {
+      errors.push('conditions should be object');
     }
   }
   return errors;
