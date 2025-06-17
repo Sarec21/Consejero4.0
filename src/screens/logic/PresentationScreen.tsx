@@ -25,7 +25,7 @@ export default function PresentationScreen() {
     const init = async () => {
       try {
         if (mainPlot) {
-          const kingdomMatch = findMatchingKingdom(mainPlot, mainPlot.level)
+          const kingdomMatch = findMatchingKingdom(mainPlot)
           if (kingdomMatch) {
             setSelectedKingdom(kingdomMatch)
             setKingdom(kingdomMatch.name)
@@ -45,7 +45,7 @@ export default function PresentationScreen() {
           console.log('Generated plot:', plot)
           if (plot) {
             setMainPlot(plot)
-            const kingdomMatch = findMatchingKingdom(plot, plot.level)
+            const kingdomMatch = findMatchingKingdom(plot)
             if (kingdomMatch) {
               setSelectedKingdom(kingdomMatch)
               setKingdom(kingdomMatch.name)
