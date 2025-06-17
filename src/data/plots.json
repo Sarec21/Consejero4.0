@@ -47,7 +47,7 @@
       },
       {
         "title": "Crisis Decision",
-        "description": "To defend, negotiate, or retreat \u2014 each choice has a cost.",
+        "description": "To defend, negotiate, or retreat — each choice has a cost.",
         "requiredEvents": [],
         "advanceConditions": {
           "keyDecision": "defend_border"
@@ -74,7 +74,7 @@
         "prophetic_child"
       ],
       "visualStyle": "gritty bronze",
-      "symbolIcon": "\ud83d\udee1\ufe0f"
+      "symbolIcon": "🛡️"
     },
     "requiredEvents": [
       "repel_invasion",
@@ -93,7 +93,35 @@
       "war",
       "honor",
       "tension"
-    ]
+    ],
+    "level": "village",
+    "visual": {
+      "tag_ia": "plot illustration for plot_border_flames"
+    },
+    "personajes_recomendados": {
+      "facciones": [
+        "military",
+        "guards"
+      ],
+      "arquetipos": [
+        "veteran"
+      ],
+      "etiquetas": [
+        "loyalty"
+      ]
+    },
+    "recommended_characters": {
+      "factions": [
+        "military",
+        "guards"
+      ],
+      "archetypes": [
+        "veteran"
+      ],
+      "tags": [
+        "loyalty"
+      ]
+    }
   },
   {
     "id": "betrayal_in_the_dunes",
@@ -107,18 +135,57 @@
       "conflict": 70,
       "trust": 50
     },
-    "requiredEvents": ["secret_trial", "death_of_envoy"],
-    "optionalTwists": ["sandstorm_uprising", "betrayed_by_confidant"],
+    "requiredEvents": [
+      "secret_trial",
+      "death_of_envoy"
+    ],
+    "optionalTwists": [
+      "sandstorm_uprising",
+      "betrayed_by_confidant"
+    ],
     "revealTiming": {
       "hint": 2,
       "conflict": 4,
       "climax": 6
     },
-    "tags": ["desert", "betrayal", "legacy", "ruin", "secrecy"],
+    "tags": [
+      "desert",
+      "betrayal",
+      "legacy",
+      "ruin",
+      "secrecy",
+      "intrigue"
+    ],
     "recommended_characters": {
-      "facciones": ["nobleza", "guardia", "mercaderes"],
-      "arquetipos": ["traidor", "conspirador", "espía"],
-      "etiquetas": ["ambicion", "frialdad", "ocultismo"]
+      "factions": [
+        "merchants",
+        "nobility"
+      ],
+      "archetypes": [
+        "spy",
+        "traitor"
+      ],
+      "tags": [
+        "ambition",
+        "occult"
+      ]
+    },
+    "visual": {
+      "tag_ia": "plot illustration for betrayal_in_the_dunes"
+    },
+    "personajes_recomendados": {
+      "facciones": [
+        "merchants",
+        "nobility"
+      ],
+      "arquetipos": [
+        "spy",
+        "traitor"
+      ],
+      "etiquetas": [
+        "ambition",
+        "occult"
+      ]
     }
   },
   {
@@ -133,18 +200,62 @@
       "conflict": 80,
       "trust": 30
     },
-    "requiredEvents": ["oath_revealed", "attack_on_watchtower"],
-    "optionalTwists": ["heir_disappears", "storm_delays"],
+    "requiredEvents": [
+      "oath_revealed",
+      "attack_on_watchtower"
+    ],
+    "optionalTwists": [
+      "heir_disappears",
+      "storm_delays"
+    ],
     "revealTiming": {
       "hint": 3,
       "conflict": 5,
       "climax": 7
     },
-    "tags": ["loyalty", "sacrifice", "honor", "conflict", "legacy"],
+    "tags": [
+      "loyalty",
+      "sacrifice",
+      "honor",
+      "conflict",
+      "legacy"
+    ],
     "recommended_characters": {
-      "facciones": ["clanes", "sacerdotes", "guardia"],
-      "arquetipos": ["heredero", "mentor", "viejo_leal"],
-      "etiquetas": ["honor", "tradición", "juramento"]
+      "factions": [
+        "clans",
+        "priests",
+        "guards"
+      ],
+      "archetypes": [
+        "heir",
+        "mentor",
+        "old_loyalist"
+      ],
+      "tags": [
+        "honor",
+        "tradition",
+        "oath"
+      ]
+    },
+    "visual": {
+      "tag_ia": "plot illustration for the_forgotten_oath"
+    },
+    "personajes_recomendados": {
+      "facciones": [
+        "clans",
+        "priests",
+        "guards"
+      ],
+      "arquetipos": [
+        "heir",
+        "mentor",
+        "old_loyalist"
+      ],
+      "etiquetas": [
+        "honor",
+        "tradition",
+        "oath"
+      ]
     }
   }
 ]

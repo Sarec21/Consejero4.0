@@ -3,18 +3,98 @@
     "id": "twist_traitor_guard",
     "title": "A Guard's Confession",
     "description": "A royal guard secretly admits to accepting bribes from a noble faction.",
-    "impactTags": ["corruption", "betrayal", "fear"],
     "visual": {
       "tag_ia": "guard in shadows whispering confession in torch-lit corridor"
-    }
+    },
+    "tags": [
+      "corruption",
+      "betrayal",
+      "fear"
+    ]
   },
   {
     "id": "twist_unexpected_heir",
     "title": "Claim of the Lost Heir",
     "description": "A figure claiming to be the true heir of the northern throne demands an audience.",
-    "impactTags": ["identity", "legacy", "shock"],
     "visual": {
       "tag_ia": "hooded figure holding royal crest in snowy court"
+    },
+    "tags": [
+      "identity",
+      "legacy",
+      "shock"
+    ]
+  },
+  {
+    "id": "betrayal_within",
+    "title": "Betrayal from Within",
+    "description": "A trusted advisor reveals alliances with the enemy.",
+    "tags": [
+      "betrayal",
+      "shock"
+    ],
+    "visual": {
+      "tag_ia": "advisor removing mask in dim throne room"
+    }
+  },
+  {
+    "id": "mercenary_uprising",
+    "title": "Mercenary Uprising",
+    "description": "Hired soldiers revolt demanding higher pay.",
+    "tags": [
+      "rebellion",
+      "greed"
+    ],
+    "visual": {
+      "tag_ia": "mercenaries raising weapons against castle walls"
+    }
+  },
+  {
+    "id": "sandstorm_uprising",
+    "title": "Sandstorm Uprising",
+    "description": "Desert rebels use a raging sandstorm to cover their attack.",
+    "tags": [
+      "desert",
+      "rebellion"
+    ],
+    "visual": {
+      "tag_ia": "figures emerging from sandstorm near city"
+    }
+  },
+  {
+    "id": "betrayed_by_confidant",
+    "title": "Betrayed by a Confidant",
+    "description": "A close friend sells secrets to rivals.",
+    "tags": [
+      "betrayal",
+      "secrecy"
+    ],
+    "visual": {
+      "tag_ia": "shadowed figure handing scrolls in alley"
+    }
+  },
+  {
+    "id": "heir_disappears",
+    "title": "Heir Disappears",
+    "description": "The designated heir vanishes on the eve of a crucial ceremony.",
+    "tags": [
+      "mystery",
+      "legacy"
+    ],
+    "visual": {
+      "tag_ia": "empty chamber with fallen crown"
+    }
+  },
+  {
+    "id": "storm_delays",
+    "title": "Storm Delays March",
+    "description": "A violent storm halts troop movements, giving enemies time.",
+    "tags": [
+      "weather",
+      "delay"
+    ],
+    "visual": {
+      "tag_ia": "army halted by heavy storm on muddy road"
     }
   }
 ]

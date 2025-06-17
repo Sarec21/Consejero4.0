@@ -12,7 +12,7 @@ export default function ViewPresentationScreen({ kingName, kingdom, kingdomDescr
   const { currentKing, mainPlot } = useGameState()
   const name = currentKing?.name || kingName
   const epithet = currentKing?.epithet || ''
-  const visual = currentKing?.visual || 'N/A'
+  const visual = currentKing?.visual?.tag_ia || 'N/A'
   const phrase = currentKing?.king_phrase || 'Long live the king.'
   const throneDesc = currentKing?.throne_room_description || 'The throne room awaits.'
   const kingdomContext = currentKing?.kingdom_context || `The kingdom of ${kingdom}`

@@ -1,31 +1,40 @@
 [
   {
-    "id": "rumor_hambre_01",
-    "texto": "Dicen que en el sur, los niños comen corteza de los árboles.",
-    "condiciones": {
-      "prestigio_max": 40,
-      "guerra": false
+    "id": "rumor_hunger_01",
+    "text": "They say in the south, children chew on tree bark.",
+    "conditions": {
+      "prestige_max": 40,
+      "war": false
     },
-    "peso": 3,
-    "tipo": "crisis"
+    "weight": 3,
+    "type": "crisis",
+    "visual": {
+      "tag_ia": "hungry children near barren trees"
+    }
   },
   {
-    "id": "rumor_riqueza_02",
-    "texto": "Un poeta asegura que las calles del Reino brillan como el oro.",
-    "condiciones": {
-      "prestigio_min": 70,
-      "confianza_min": 60
+    "id": "rumor_wealth_02",
+    "text": "A poet claims the kingdom streets shine like gold.",
+    "conditions": {
+      "prestige_min": 70,
+      "trust_min": 60
     },
-    "peso": 2,
-    "tipo": "prosperidad"
+    "weight": 2,
+    "type": "prosperity",
+    "visual": {
+      "tag_ia": "prosperous medieval city with golden glow"
+    }
   },
   {
-    "id": "rumor_militar_03",
-    "texto": "Alguien escuchó pasos de soldados extranjeros al anochecer.",
-    "condiciones": {
-      "guerra": true
+    "id": "rumor_military_03",
+    "text": "Someone heard foreign soldiers marching after dark.",
+    "conditions": {
+      "war": true
     },
-    "peso": 4,
-    "tipo": "neutro"
+    "weight": 4,
+    "type": "neutral",
+    "visual": {
+      "tag_ia": "shadowy silhouettes of soldiers at night"
+    }
   }
 ]

@@ -2,39 +2,29 @@
   {
     "id": "desertic_empire_south",
     "name": "Empire of the Dunes",
-    "motto": "Where the sun burns lies and the wind buries secrets.",
-    "description": "A vast empire ruled by old laws and shifting sands. Once glorious, now fractured by hidden wars.",
-    "visual_style": {
-      "palette": "gold_sand_red_cloth",
-      "architecture": "mud bricks, towers, domes",
-      "landmarks": ["Pyramid of Kings", "Cavern of Whispers"]
+    "traits": [
+      "desert",
+      "tradition",
+      "secrecy",
+      "ruin"
+    ],
+    "visual": {
+      "tag_ia": "ancient desert kingdom with pyramids and golden banners under blazing sun"
     },
-    "narrative_tags": ["desert", "tradition", "secrecy", "ruin"],
-    "levels_available": ["village", "governor", "royal_court"],
-    "default_weather": "scorching sun",
-    "season_cycle": ["Drought Moon", "Storm Time", "Pilgrim's Shade", "Wind Fall"],
-    "symbolic_elements": ["scorpion", "sun disk", "sand spiral"],
-    "visual_prompt_tag": "ancient desert kingdom with pyramids and golden banners under blazing sun",
-    "recommended_plot_tags": ["betrayal", "legacy", "dust"],
-    "recommended_kings": ["king_thorne_warborn", "king_lauren_cunning"]
+    "description": "A vast desert realm ruled by ancient traditions."
   },
   {
     "id": "highland_vales_north",
     "name": "Highland Vales",
-    "motto": "Peace blooms where vigilance reigns.",
-    "description": "A mountain kingdom of isolated strongholds and stubborn clans. Harsh winters, silent loyalty.",
-    "visual_style": {
-      "palette": "gray_stone_green_heraldry",
-      "architecture": "castles, watchtowers, snowy roofs",
-      "landmarks": ["Eagle Spire", "Frozen Pact Bridge"]
+    "traits": [
+      "loyalty",
+      "honor",
+      "isolation",
+      "tradition"
+    ],
+    "visual": {
+      "tag_ia": "frozen highland kingdom with stone towers and clan banners in snowstorm"
     },
-    "narrative_tags": ["loyalty", "honor", "isolation", "tradition"],
-    "levels_available": ["village", "governor", "royal_court", "mythical_kingdom"],
-    "default_weather": "snowfall",
-    "season_cycle": ["Thaw", "Huntmoon", "Frostshard", "Longdark"],
-    "symbolic_elements": ["eagle", "pine", "blood oath"],
-    "visual_prompt_tag": "frozen highland kingdom with stone towers and clan banners in snowstorm",
-    "recommended_plot_tags": ["sacrifice", "conflict", "legacy"],
-    "recommended_kings": ["king_aldric_justo", "king_feron_just"]
+    "description": "Remote mountain valleys united under watchful clans."
   }
 ]

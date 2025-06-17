@@ -6,14 +6,28 @@
     "faction": "nobility",
     "type": "hidden",
     "appearance_conditions": {
-      "plot_tags": ["intrigue", "blood"],
-      "current_emotion": ["fear"],
-      "counselor_level": ["royal_court"]
+      "plot_tags": [
+        "intrigue",
+        "blood"
+      ],
+      "current_emotion": [
+        "fear"
+      ],
+      "advisor_level": [
+        "royal_court"
+      ]
     },
-    "active_in_levels": ["royal_court", "mythical_kingdom"],
-    "tags": ["ambition", "coldness", "power"],
+    "active_in_levels": [
+      "royal_court",
+      "mythical_kingdom"
+    ],
+    "tags": [
+      "ambition",
+      "coldness",
+      "power"
+    ],
     "visual": {
-      "ai_prompt": "dark nobleman with red cloak in medieval war chamber"
+      "tag_ia": "dark nobleman with red cloak in medieval war chamber"
     }
   },
   {
@@ -23,14 +37,28 @@
     "faction": "merchant_guild",
     "type": "hidden",
     "appearance_conditions": {
-      "plot_tags": ["intrigue", "trade"],
-      "current_emotion": ["suspicion"],
-      "counselor_level": ["governor"]
+      "plot_tags": [
+        "intrigue",
+        "trade"
+      ],
+      "current_emotion": [
+        "suspicion"
+      ],
+      "advisor_level": [
+        "governor"
+      ]
     },
-    "active_in_levels": ["governor", "royal_court"],
-    "tags": ["cunning", "secrecy", "influence"],
+    "active_in_levels": [
+      "governor",
+      "royal_court"
+    ],
+    "tags": [
+      "cunning",
+      "secrecy",
+      "influence"
+    ],
     "visual": {
-      "ai_prompt": "hooded guildmaster with scrolls and coins in a shadowy market hall"
+      "tag_ia": "hooded guildmaster with scrolls and coins in a shadowy market hall"
     }
   },
   {
@@ -40,74 +68,131 @@
     "faction": "military",
     "type": "visible",
     "appearance_conditions": {
-      "plot_tags": ["war", "honor"],
-      "current_emotion": ["anger", "courage"],
-      "counselor_level": ["village", "royal_court"]
+      "plot_tags": [
+        "war",
+        "honor"
+      ],
+      "current_emotion": [
+        "anger",
+        "courage"
+      ],
+      "advisor_level": [
+        "village",
+        "royal_court"
+      ]
     },
-    "active_in_levels": ["village", "royal_court"],
-    "tags": ["bravery", "loyalty", "grief"],
+    "active_in_levels": [
+      "village",
+      "royal_court"
+    ],
+    "tags": [
+      "bravery",
+      "loyalty",
+      "grief"
+    ],
     "visual": {
-      "ai_prompt": "battle-scarred knight with worn armor standing in a foggy battlefield"
+      "tag_ia": "battle-scarred knight with worn armor standing in a foggy battlefield"
     }
   },
   {
     "id": "spy_malek_dunes",
     "name": "Malek of the Red Scarf",
     "description": "A mysterious figure who sells secrets to the highest bidder.",
-    "faction": "mercaderes",
-    "archetype": "espía",
-    "tags": ["ambicion", "ocultismo", "desierto"],
-    "active_levels": ["royal_court"],
+    "faction": "merchants",
+    "archetype": "spy",
+    "tags": [
+      "ambition",
+      "occult",
+      "desert"
+    ],
     "visual": {
       "tag_ia": "hooded spy with red scarf in a desert market"
-    }
+    },
+    "active_in_levels": [
+      "royal_court"
+    ]
   },
   {
     "id": "loyal_guard_valka",
     "name": "Valka Stonefist",
     "description": "A veteran of many wars, loyal to the old code of honor.",
-    "faction": "guardia",
-    "archetype": "viejo_leal",
-    "tags": ["honor", "lealtad", "tradición"],
-    "active_levels": ["mythical_kingdom"],
+    "faction": "guards",
+    "archetype": "old_loyalist",
+    "tags": [
+      "honor",
+      "loyalty",
+      "tradition"
+    ],
     "visual": {
       "tag_ia": "old armored guard with grey beard at a mountain watchtower"
-    }
+    },
+    "active_in_levels": [
+      "mythical_kingdom"
+    ]
   },
   {
     "id": "traitor_noble_varim",
     "name": "Lord Varim Sandshade",
     "description": "Whispers follow his steps through the halls of power.",
-    "faction": "nobleza",
-    "archetype": "traidor",
-    "tags": ["frialdad", "ambicion", "intriga"],
-    "active_levels": ["royal_court", "mythical_kingdom"],
+    "faction": "nobility",
+    "archetype": "traitor",
+    "tags": [
+      "coldness",
+      "ambition",
+      "intrigue"
+    ],
     "hidden": true,
     "appearance_conditions": {
-      "tags_plot": ["betrayal", "secrecy"],
-      "current_emotion": ["miedo", "desconfianza"],
-      "advisor_level": ["royal_court"]
+      "current_emotion": [
+        "fear",
+        "distrust"
+      ],
+      "advisor_level": [
+        "royal_court"
+      ],
+      "plot_tags": [
+        "betrayal",
+        "secrecy"
+      ]
     },
     "visual": {
       "tag_ia": "noble with dark eyes and golden ring in desert palace"
-    }
+    },
+    "active_in_levels": [
+      "royal_court",
+      "mythical_kingdom"
+    ]
   },
   {
     "id": "heir_in_exile_eira",
     "name": "Eira of the North Flame",
     "description": "Once heir to the northern clans, now vanished and whispered of.",
-    "faction": "clanes",
-    "archetype": "heredero",
-    "tags": ["conflicto", "destino", "juramento"],
-    "active_levels": ["mythical_kingdom"],
+    "faction": "clans",
+    "archetype": "heir",
+    "tags": [
+      "conflict",
+      "destiny",
+      "oath"
+    ],
     "hidden": true,
     "appearance_conditions": {
-      "tags_plot": ["legacy", "loyalty"],
-      "current_emotion": ["esperanza", "culpa"],
-      "advisor_level": ["mythical_kingdom"]
+      "current_emotion": [
+        "hope",
+        "guilt"
+      ],
+      "advisor_level": [
+        "mythical_kingdom"
+      ],
+      "plot_tags": [
+        "legacy",
+        "loyalty"
+      ]
     },
     "visual": {
       "tag_ia": "female warrior with northern tattoos in snowy exile"
-    }
+    },
+    "active_in_levels": [
+      "mythical_kingdom"
+    ]
   }
 ]

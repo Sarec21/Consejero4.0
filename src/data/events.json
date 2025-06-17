@@ -4,53 +4,145 @@
     "title": "Tax Reform Proposal",
     "description": "The court proposes a complete overhaul of the tax collection system to reduce corruption.",
     "level": "royal_court",
-    "tags": ["law", "reform", "corruption"],
+    "tags": [
+      "law",
+      "reform",
+      "corruption"
+    ],
     "impact": {
       "prestige": 5,
       "trust": 10,
       "war": 0
     },
     "activation_conditions": {
-      "plot_tags": ["law", "balance"],
+      "plot_tags": [
+        "law",
+        "balance"
+      ],
       "min_turn": 2,
       "max_turn": 6
     },
-    "visual": "scrolls_on_table_with_coins"
+    "visual": {
+      "tag_ia": "scrolls_on_table_with_coins"
+    }
   },
   {
     "id": "event_secure_silk_routes",
     "title": "Silk Route Protection",
     "description": "Merchants request military escorts to defend against frequent raids.",
     "level": "governor",
-    "tags": ["trade", "security"],
+    "tags": [
+      "trade",
+      "security"
+    ],
     "impact": {
       "prestige": 8,
       "trust": -3,
       "war": 5
     },
     "activation_conditions": {
-      "plot_tags": ["trade", "alliances"],
+      "plot_tags": [
+        "trade",
+        "alliances"
+      ],
       "min_turn": 1,
       "max_turn": 5
     },
-    "visual": "caravan_guarded_by_soldiers"
+    "visual": {
+      "tag_ia": "caravan_guarded_by_soldiers"
+    }
   },
   {
     "id": "event_smuggler_ambush",
     "title": "Smuggler Ambush in the Dunes",
     "description": "A convoy was attacked under suspicious circumstances. Some say the guards opened the gates themselves.",
-    "impactTags": ["betrayal", "secrecy", "desert"],
     "visual": {
       "tag_ia": "desert ambush with broken wagons and masked figures"
+    },
+    "level": "royal_court",
+    "tags": [
+      "betrayal",
+      "secrecy",
+      "desert"
+    ]
+  },
+  {
+    "id": "oath_revealed",
+    "title": "The Forgotten Oath Resurfaces",
+    "description": "Ancient writings found in a ruined monastery mention a blood pact tied to the northern clans.",
+    "visual": {
+      "tag_ia": "ancient scroll glowing in snowy ruins"
+    },
+    "level": "royal_court",
+    "tags": [
+      "legacy",
+      "mystery",
+      "loyalty"
+    ]
+  },
+  {
+    "id": "repel_invasion",
+    "title": "Repel the Invasion",
+    "description": "Border forces have crossed into the kingdom and must be pushed back.",
+    "level": "village",
+    "tags": [
+      "war",
+      "defense"
+    ],
+    "visual": {
+      "tag_ia": "village militia fighting invaders at dusk"
     }
   },
   {
-    "id": "event_old_oath_revealed",
-    "title": "The Forgotten Oath Resurfaces",
-    "description": "Ancient writings found in a ruined monastery mention a blood pact tied to the northern clans.",
-    "impactTags": ["legacy", "mystery", "loyalty"],
+    "id": "fortify_villages",
+    "title": "Fortify the Villages",
+    "description": "Local settlements require fortifications to withstand attacks.",
+    "level": "village",
+    "tags": [
+      "war",
+      "preparation"
+    ],
     "visual": {
-      "tag_ia": "ancient scroll glowing in snowy ruins"
+      "tag_ia": "workers building wooden palisades in haste"
+    }
+  },
+  {
+    "id": "secret_trial",
+    "title": "Secret Trial",
+    "description": "A clandestine court is held to judge a captured traitor.",
+    "level": "royal_court",
+    "tags": [
+      "secrecy",
+      "law"
+    ],
+    "visual": {
+      "tag_ia": "dimly lit chamber with hooded judges"
+    }
+  },
+  {
+    "id": "death_of_envoy",
+    "title": "Death of the Envoy",
+    "description": "A trusted envoy is found dead under mysterious circumstances.",
+    "level": "royal_court",
+    "tags": [
+      "betrayal",
+      "mystery"
+    ],
+    "visual": {
+      "tag_ia": "envoy lying lifeless in ornate hallway"
+    }
+  },
+  {
+    "id": "attack_on_watchtower",
+    "title": "Attack on the Watchtower",
+    "description": "Enemy forces strike the northern watchtower during the night.",
+    "level": "mythical_kingdom",
+    "tags": [
+      "war",
+      "surprise"
+    ],
+    "visual": {
+      "tag_ia": "burning watchtower on snowy cliff"
     }
   }
 ]
