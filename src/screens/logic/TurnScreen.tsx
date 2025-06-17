@@ -4,15 +4,18 @@ import { useGameState } from '../../state/gameState'
 import { checkAndTriggerMutations } from '../../lib/mutationLogic'
 import { getAvailableEvents } from '../../lib/eventSelector'
 import ViewTurnScreen from '../view/ViewTurnScreen'
+import { selectRumor } from '../../lib/rumorSelector'
 
 export default function TurnScreen() {
+  const gameState = useGameState()
   const {
     setPlayerAdvice,
     mainPlot,
     currentTurn,
     setCurrentTurn,
     setActiveEvents,
-  } = useGameState()
+  } = gameState
+  const rumor = selectRumor(gameState)
   const [advice, setAdvice] = useState('')
   const navigate = useNavigate()
 
@@ -30,6 +33,7 @@ export default function TurnScreen() {
 
   return (
     <ViewTurnScreen
+      rumor={rumor}
       advice={advice}
       onAdviceChange={setAdvice}
       onSend={handleSend}
