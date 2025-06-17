@@ -24,6 +24,7 @@ export default function TurnScreen() {
     setActiveEvents,
     addRumors,
     rumorsQueue,
+    setRumorsQueue,
   } = gameState
   const matchingRumors = getMatchingRumors(
     gameState.currentEmotion || [],
@@ -34,7 +35,19 @@ export default function TurnScreen() {
   useEffect(() => {
     if (rumor) addRumors([rumor])
   }, [rumor, addRumors])
-  const currentRumorId = rumorsQueue.length > 0 ? rumorsQueue[0] : null
+
+  const [currentRumorId, setCurrentRumorId] = useState<string | null>(null)
+
+  // Remove the first rumor after it is shown once
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    if (rumorsQueue.length > 0) {
+      setCurrentRumorId(rumorsQueue[0])
+      setRumorsQueue(rumorsQueue.slice(1))
+    }
+  }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
+
   const currentRumorText = currentRumorId ? getRumorTextById(currentRumorId) : ''
   const [advice, setAdvice] = useState('')
   const navigate = useNavigate()

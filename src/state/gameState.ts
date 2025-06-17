@@ -63,6 +63,7 @@ export interface GameState {
   addUnlockedCards: (cards: string[]) => void
   setCurrentEmotion: (emotion: string[]) => void
   addRumors: (rumors: string[]) => void
+  setRumorsQueue: (queue: string[]) => void
   setCurrentEvent: (event: import('../lib/eventUtils').Event | null) => void
   resetMainPlot: () => void
   resetState: () => void
@@ -105,6 +106,7 @@ export const useGameState = create<GameState>((set) => ({
   setActiveEvents: (activeEvents) => set({ activeEvents }),
   addRumors: (rumors) =>
     set((state) => ({ rumorsQueue: [...state.rumorsQueue, ...rumors] })),
+  setRumorsQueue: (rumorsQueue) => set({ rumorsQueue }),
   setCurrentEvent: (currentEvent) => set({ currentEvent }),
   resetMainPlot: () => set({ mainPlot: null }),
   resetState: () =>
