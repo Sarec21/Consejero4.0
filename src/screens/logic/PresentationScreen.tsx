@@ -1,80 +1,13 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGameState } from '../../state/gameState'
-import { generateInitialPlot, initialPlotPrompt } from '../../lib/narrative'
-import { findMatchingKing } from '../../lib/kingSelector'
-import { findMatchingKingdom } from '../../lib/kingdomSelector'
-import type { Kingdom } from '../../types'
+import useInitialPlot from '../../hooks/useInitialPlot'
 import ViewPresentationScreen from '../view/ViewPresentationScreen'
 import Loader from '../../components/Loader'
 
-// Persist initialization status across StrictMode remounts
-let plotInitialized = false
-
 export default function PresentationScreen() {
-  const {
-    kingName,
-    kingdom,
-    mainPlot,
-    setKingName,
-    setKingdom,
-    setMainPlot,
-    setCurrentKing,
-  } = useGameState()
+  const { kingName, kingdom } = useGameState()
   const navigate = useNavigate()
-  const [debugText, setDebugText] = useState('')
-  const [selectedKingdom, setSelectedKingdom] = useState<Kingdom | null>(null)
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    if (plotInitialized || mainPlot) return
-    plotInitialized = true
-
-    const init = async () => {
-      setLoading(true)
-      try {
-        if (mainPlot) {
-          const kingdomMatch = findMatchingKingdom(mainPlot)
-          if (kingdomMatch) {
-            setSelectedKingdom(kingdomMatch)
-            setKingdom(kingdomMatch.name)
-          }
-          const king = findMatchingKing(mainPlot)
-          if (king) {
-            setCurrentKing(king)
-            setKingName(`${king.name} ${king.epithet}`)
-          }
-          if (!kingdomMatch) setKingdom(mainPlot.tags[0] || 'Eldoria')
-        } else {
-          setDebugText(`Prompt:\n${initialPlotPrompt}\n\n`)
-          const plot = await generateInitialPlot()
-          setDebugText((prev) => prev + `Raw result:\n${JSON.stringify(plot, null, 2)}\n`)
-          if (plot) {
-            setMainPlot(plot)
-            const kingdomMatch = findMatchingKingdom(plot)
-            if (kingdomMatch) {
-              setSelectedKingdom(kingdomMatch)
-              setKingdom(kingdomMatch.name)
-            }
-            const king = findMatchingKing(plot)
-            if (king) {
-              setCurrentKing(king)
-              setKingName(`${king.name} ${king.epithet}`)
-            }
-            if (!kingdomMatch) setKingdom(plot.tags[0] || 'Eldoria')
-          } else {
-            setDebugText((prev) => prev + 'Fallback: plot was null\n')
-          }
-        }
-      } catch (error) {
-        console.error('Error initializing plot', error)
-        setDebugText((prev) => prev + `Error: ${(error as Error).message}\n`)
-      } finally {
-        setLoading(false)
-      }
-    }
-    init()
-  }, [mainPlot, setKingName, setKingdom, setMainPlot, setCurrentKing])
+  const { loading, debugText, selectedKingdom } = useInitialPlot()
 
   const handleContinue = () => {
     navigate('/turn')
