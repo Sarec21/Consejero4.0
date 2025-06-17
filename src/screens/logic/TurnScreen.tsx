@@ -61,7 +61,7 @@ export default function TurnScreen() {
       advice={advice}
       onAdviceChange={setAdvice}
       onSend={handleSend}
-      debugCharacters={availableChars}
+      debugCharacters={import.meta.env.DEV ? availableChars : undefined}
     />
   )
 }

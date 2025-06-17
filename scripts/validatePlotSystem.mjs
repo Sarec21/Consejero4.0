@@ -109,11 +109,14 @@ function validateCharacter(ch) {
       const bad = cond.plot_tags.filter(t => !validTags.has(t));
       if (bad.length) errors.push(`invalid plot_tags: ${bad.join(', ')}`);
     }
-    if (!Array.isArray(cond.current_emotion)) errors.push('current_emotion missing');
-    if (!Array.isArray(cond.advisor_levels)) errors.push('advisor_levels missing');
+    if (cond.current_emotion && !Array.isArray(cond.current_emotion)) {
+      errors.push('current_emotion invalid');
+    }
+    const lvlList = cond.advisor_level || cond.advisor_levels;
+    if (!Array.isArray(lvlList)) errors.push('advisor_level missing');
     else {
-      const badL = cond.advisor_levels.filter(l => !validLevels.includes(l));
-      if (badL.length) errors.push(`invalid advisor_levels: ${badL.join(', ')}`);
+      const badL = lvlList.filter(l => !validLevels.includes(l));
+      if (badL.length) errors.push(`invalid advisor_level: ${badL.join(', ')}`);
     }
   }
 
