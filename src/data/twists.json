@@ -1,0 +1,20 @@
+[
+  {
+    "id": "twist_traitor_guard",
+    "title": "A Guard's Confession",
+    "description": "A royal guard secretly admits to accepting bribes from a noble faction.",
+    "impactTags": ["corruption", "betrayal", "fear"],
+    "visual": {
+      "tag_ia": "guard in shadows whispering confession in torch-lit corridor"
+    }
+  },
+  {
+    "id": "twist_unexpected_heir",
+    "title": "Claim of the Lost Heir",
+    "description": "A figure claiming to be the true heir of the northern throne demands an audience.",
+    "impactTags": ["identity", "legacy", "shock"],
+    "visual": {
+      "tag_ia": "hooded figure holding royal crest in snowy court"
+    }
+  }
+]
